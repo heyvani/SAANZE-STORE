@@ -1,189 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saanze | Feel The Vibes ✦</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body></body>
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursor-follower"></div>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
 
-    <!-- Grain Overlay -->
-    <div class="grain-overlay"></div>
+<!-- Grain Overlay -->
+<div class="grain-overlay"></div>
 
-    <!-- Navigation -->
-    <header id="navbar">
-        <nav class="navbar">
-            <div class="logo">
-                <span class="logo-text">SAANZE</span>
-                <span class="logo-dot">.</span>
+<!-- Navigation -->
+<header id="navbar">
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">SAANZE</span>
+            <span class="logo-dot">.</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link magnetic-btn" data-text="Collections">Collections</a></li>
+            <li><a href="#catalogue" class="nav-link magnetic-btn" data-text="Catalogue">Catalogue</a></li>
+            <li><a href="#lookbook" class="nav-link magnetic-btn" data-text="Lookbook">Lookbook</a></li>
+            <li><a href="#" class="nav-link magnetic-btn" data-text="Drops">New Drops 🔥</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="icon-btn magnetic-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn magnetic-btn"><i class="fa-solid fa-heart"></i><span class="badge">2</span></button>
+            <button class="icon-btn magnetic-btn cart-btn"><i class="fa-solid fa-bag-shopping"></i><span
+                    class="badge">0</span></button>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-shapes">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                NEW COLLECTION 2026 — NOW LIVE
             </div>
-            <ul class="nav-links">
-                <li><a href="#" class="nav-link magnetic-btn" data-text="Collections">Collections</a></li>
-                <li><a href="#catalogue" class="nav-link magnetic-btn" data-text="Catalogue">Catalogue</a></li>
-                <li><a href="#lookbook" class="nav-link magnetic-btn" data-text="Lookbook">Lookbook</a></li>
-                <li><a href="#" class="nav-link magnetic-btn" data-text="Drops">New Drops 🔥</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="icon-btn magnetic-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="icon-btn magnetic-btn"><i class="fa-solid fa-heart"></i><span class="badge">2</span></button>
-                <button class="icon-btn magnetic-btn cart-btn"><i class="fa-solid fa-bag-shopping"></i><span class="badge">0</span></button>
+            <h1 class="hero-title">
+                <span class="title-line" data-scroll>FEEL</span>
+                <span class="title-line outline" data-scroll>THE</span>
+                <span class="title-line gradient-text" data-scroll>VIBES</span>
+                <span class="title-sparkle">✦</span>
+            </h1>
+            <p class="hero-subtitle">Saanze — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨
+            </p>
+            <div class="hero-cta">
+                <a href="#catalogue" class="btn-glow magnetic-btn">
+                    <span>Shop the Collection</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#lookbook" class="btn-outline magnetic-btn">
+                    <span>Lookbook</span>
+                </a>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-bg-shapes">
-                <div class="blob blob-1"></div>
-                <div class="blob blob-2"></div>
-                <div class="blob blob-3"></div>
-            </div>
-
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    NEW COLLECTION 2026 — NOW LIVE
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-count="5">0</span><span class="stat-suffix">K+</span>
+                    <span class="stat-label">Happy Customers</span>
                 </div>
-                <h1 class="hero-title">
-                    <span class="title-line" data-scroll>FEEL</span>
-                    <span class="title-line outline" data-scroll>THE</span>
-                    <span class="title-line gradient-text" data-scroll>VIBES</span>
-                    <span class="title-sparkle">✦</span>
-                </h1>
-                <p class="hero-subtitle">Saanze — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨</p>
-                <div class="hero-cta">
-                    <a href="#catalogue" class="btn-glow magnetic-btn">
-                        <span>Shop the Collection</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="#lookbook" class="btn-outline magnetic-btn">
-                        <span>Lookbook</span>
-                    </a>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="3">0</span><span class="stat-suffix"> Pieces</span>
+                    <span class="stat-label">Exclusive Collection</span>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number" data-count="5">0</span><span class="stat-suffix">K+</span>
-                        <span class="stat-label">Happy Customers</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="3">0</span><span class="stat-suffix"> Pieces</span>
-                        <span class="stat-label">Exclusive Collection</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="4">0</span><span class="stat-suffix">.9★</span>
-                        <span class="stat-label">Avg. Rating</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div class="hero-card-stack">
-                    <div class="hero-card hero-card-1 tilt-card">
-                        <img src="assets/red corset.jpeg" alt="Saanze Burgundy Corset">
-                        <div class="hero-card-tag">TRENDING 🔥</div>
-                    </div>
-                    <div class="hero-card hero-card-2 tilt-card">
-                        <img src="assets/halter top .jpeg" alt="Saanze Floral Halter">
-                        <div class="hero-card-tag">NEW ✨</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Marquee -->
-        <div class="marquee-section">
-            <div class="marquee">
-                <div class="marquee-content">
-                    <span>SAANZE — FEEL THE VIBES ✦</span>
-                    <span>HANDCRAFTED WITH LOVE 💜</span>
-                    <span>NEW COLLECTION LIVE 💎</span>
-                    <span>ELEGANCE MEETS EDGE ✨</span>
-                    <span>SAANZE — FEEL THE VIBES ✦</span>
-                    <span>HANDCRAFTED WITH LOVE 💜</span>
-                    <span>NEW COLLECTION LIVE 💎</span>
-                    <span>ELEGANCE MEETS EDGE ✨</span>
-                    <span>SAANZE — FEEL THE VIBES ✦</span>
-                    <span>HANDCRAFTED WITH LOVE 💜</span>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="4">0</span><span class="stat-suffix">.9★</span>
+                    <span class="stat-label">Avg. Rating</span>
                 </div>
             </div>
         </div>
 
-        <!-- Catalogue Section -->
-        <section id="catalogue" class="products-section">
-            <div class="section-header reveal-up">
-                <div class="section-tag">
-                    <span class="pulse-dot"></span>
-                    THE COLLECTION
+        <div class="hero-visual">
+            <div class="hero-card-stack">
+                <div class="hero-card hero-card-1 tilt-card">
+                    <img src="assets/red corset.jpeg" alt="Saanze Burgundy Corset">
+                    <div class="hero-card-tag">TRENDING 🔥</div>
                 </div>
-                <h2 class="section-title">Our Pieces<span class="accent">.</span></h2>
-                <p class="section-desc">handcrafted pieces that speak for themselves — drip is in the details 💅</p>
+                <div class="hero-card hero-card-2 tilt-card">
+                    <img src="assets/halter top .jpeg" alt="Saanze Floral Halter">
+                    <div class="hero-card-tag">NEW ✨</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>HANDCRAFTED WITH LOVE 💜</span>
+                <span>NEW COLLECTION LIVE 💎</span>
+                <span>ELEGANCE MEETS EDGE ✨</span>
+                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>HANDCRAFTED WITH LOVE 💜</span>
+                <span>NEW COLLECTION LIVE 💎</span>
+                <span>ELEGANCE MEETS EDGE ✨</span>
+                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>HANDCRAFTED WITH LOVE 💜</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalogue Section -->
+    <section id="catalogue" class="products-section">
+        <div class="section-header reveal-up">
+            <div class="section-tag">
+                <span class="pulse-dot"></span>
+                THE COLLECTION
+            </div>
+            <h2 class="section-title">Our Pieces<span class="accent">.</span></h2>
+            <p class="section-desc">handcrafted pieces that speak for themselves — drip is in the details 💅</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Floral Halter Top -->
+            <div class="product-card tilt-card reveal-up">
+                <div class="product-image-wrapper">
+                    <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image">
+                    <div class="product-overlay">
+                        <button class="quick-add magnetic-btn">Quick Add +</button>
+                    </div>
+                    <span class="product-badge hot">TRENDY🔥</span>
+                </div>
+                <div class="product-info">
+                    <h4>Floral Halter Top</h4>
+                    <div class="product-meta">
+                        <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span></div>
+                        <div style="font-size:40px;" class="price"> <span class="price-cents"><S>₹999</S>₹699</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="product-grid">
-                <!-- Floral Halter Top -->
-                <div class="product-card tilt-card reveal-up">
-                    <div class="product-image-wrapper">
-                        <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image">
-                        <div class="product-overlay">
-                            <button class="quick-add magnetic-btn">Quick Add +</button>
-                        </div>
-                        <span class="product-badge hot">TRENDY🔥</span>
+            <!-- Burgundy Corset Lace-Up -->
+            <div class="product-card tilt-card reveal-up">
+                <div class="product-image-wrapper">
+                    <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image">
+                    <div class="product-overlay">
+                        <button class="quick-add magnetic-btn">Quick Add +</button>
                     </div>
-                    <div class="product-info">
-                        <h4>Floral Halter Top</h4>
-                        <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span></div>
-                            <div  style = "font-size:40px;"class="price"> <span class="price-cents"><S>₹999</S>₹699</span></div>
-                        </div>
+                    <span class="product-badge hot">FIRE 🔥</span>
+                </div>
+                <div class="product-info">
+                    <h4>Burgundy Corset Lace-Up</h4>
+                    <div class="product-meta">
+                        <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span></div>
+                        <div class="price"><span class="price-cents"><S>₹999</S>₹799</span></div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Burgundy Corset Lace-Up -->
-                <div class="product-card tilt-card reveal-up">
-                    <div class="product-image-wrapper">
-                        <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image">
-                        <div class="product-overlay">
-                            <button class="quick-add magnetic-btn">Quick Add +</button>
-                        </div>
-                        <span class="product-badge hot">FIRE 🔥</span>
+            <!-- White Crop Shirt -->
+            <div class="product-card tilt-card reveal-up">
+                <div class="product-image-wrapper">
+                    <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image">
+                    <div class="product-overlay">
+                        <button class="quick-add magnetic-btn">Quick Add +</button>
                     </div>
-                    <div class="product-info">
-                        <h4>Burgundy Corset Lace-Up</h4>
-                        <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span></div>
-                            <div class="price"><span class="price-cents"><S>₹999</S>₹799</span></div>
-                        </div>
+                    =<span class="product-badge hot">NEW 🔥</span>
+                </div>
+                <div class="product-info">
+                    <h4>White Crop Shirt</h4>
+                    <div class="product-meta">
+                        <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span></div>
+                        <div class="price"><span class="price-cents"><S>₹999</S> ₹799</span></div>
                     </div>
                 </div>
+            </div>
 
-                <!-- White Crop Shirt -->
-                <div class="product-card tilt-card reveal-up">
-                    <div class="product-image-wrapper">
-                        <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image">
-                        <div class="product-overlay">
-                            <button class="quick-add magnetic-btn">Quick Add +</button>
-                        </div>
-                        =<span class="product-badge hot">NEW 🔥</span>
-                    </div>
-                    <div class="product-info">
-                        <h4>White Crop Shirt</h4>
-                        <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span></div>
-                            <div class="price"><span class="price-cents"><S>₹999</S> ₹799</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Burgundy Corset Top
+            <!-- Burgundy Corset Top
                 <div class="product-card tilt-card reveal-up">
                     <div class="product-image-wrapper">
                         <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Top" class="product-image">
@@ -199,131 +206,235 @@
                             <div class="price">$49<span class="price-cents">.00</span></div>
                         </div>
                      </div> -->
-                </div> 
-            </div>
-        </section>
+        </div>
+        </div>
+    </section>
 
-        <!-- Lookbook Section — Models wearing the dresses -->
-        <section id="lookbook" class="lookbook-section">
-            <div class="section-header reveal-up">
-                <div class="section-tag">
-                    <span class="pulse-dot"></span>
-                    EDITORIAL
-                </div>
-                <h2 class="section-title">Lookbook<span class="accent">.</span></h2>
-                <p class="section-desc">see our pieces styled on models — it's giving main character energy 💫</p>
+    <!-- Lookbook Section — Models wearing the dresses -->
+    <section id="lookbook" class="lookbook-section">
+        <div class="section-header reveal-up">
+            <div class="section-tag">
+                <span class="pulse-dot"></span>
+                EDITORIAL
             </div>
+            <h2 class="section-title">Lookbook<span class="accent">.</span></h2>
+            <p class="section-desc">see our pieces styled on models — it's giving main character energy 💫</p>
+        </div>
 
-            <div class="lookbook-grid">
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/red corset.jpeg" alt="Model wearing Burgundy Corset Top">
-                    <div class="lookbook-caption">
-                        <h4>Burgundy Corset Top</h4>
-                        <span>Editorial Shot — Styled by Saanze</span>
-                    </div>
-                </div>
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/red corset back.jpeg" alt="Model wearing Floral Halter Top">
-                    <div class="lookbook-caption">
-                        <h4>Burgundy Corset Top</h4>
-                        <span>Golden Hour — Styled by Saanze</span>
-                    </div>
-                </div>
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/white top front.jpeg" alt="Model wearing White Crop Shirt">
-                    <div class="lookbook-caption">
-                        <h4>White Crop Shirt</h4>
-                        <span>Studio Clean — Styled by Saanze</span>
-                    </div>
-                </div>
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/white top back.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
-                    <div class="lookbook-caption">
-                        <h4>White Crop shirt</h4>
-                        <span>Dark Editorial — Styled by Saanze</span>
-                    </div>
-                </div>
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/halter top .jpeg" alt="Model wearing Burgundy Corset Lace-Up">
-                    <div class="lookbook-caption">
-                        <h4>Floral Halter Top</h4>
-                        <span>Dark Editorial — Styled by Saanze</span>
-                    </div>
-                </div>
-                <div class="lookbook-card tilt-card reveal-up">
-                    <img src="assets/halter neck front.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
-                    <div class="lookbook-caption">
-                        <h4>Floral Halter Top</h4>
-                        <span>Dark Editorial — Styled by Saanze</span>
-                    </div>
+        <div class="lookbook-grid">
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/red corset.jpeg" alt="Model wearing Burgundy Corset Top">
+                <div class="lookbook-caption">
+                    <h4>Burgundy Corset Top</h4>
+                    <span>Editorial Shot — Styled by Saanze</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Newsletter / CTA -->
-        <section class="cta-section">
-            <div class="cta-content reveal-up">
-                <h2 class="cta-title">Join the <span class="gradient-text">SAANZE</span> fam ✦</h2>
-                <p>get early access to drops, exclusive deals, and vibes in your inbox 💌</p>
-                <div class="cta-input-group">
-                    <input type="email" placeholder="your@email.com" class="cta-input">
-                    <button class="btn-glow magnetic-btn cta-btn">
-                        <span>Subscribe</span>
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/red corset back.jpeg" alt="Model wearing Floral Halter Top">
+                <div class="lookbook-caption">
+                    <h4>Burgundy Corset Top</h4>
+                    <span>Golden Hour — Styled by Saanze</span>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="logo"><span class="logo-text">SAANZE</span><span class="logo-dot">.</span></div>
-                <p>where elegance meets edge. ✨</p>
-                <div class="footer-socials">
-                    <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-pinterest"></i></a>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/white top front.jpeg" alt="Model wearing White Crop Shirt">
+                <div class="lookbook-caption">
+                    <h4>White Crop Shirt</h4>
+                    <span>Studio Clean — Styled by Saanze</span>
                 </div>
             </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Shop</h4>
-                    <a href="#">Collection</a>
-                    <a href="#">Lookbook</a>
-                    <a href="#">Sale</a>
-                    <a href="#">Gift Cards</a>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/white top back.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
+                <div class="lookbook-caption">
+                    <h4>White Crop shirt</h4>
+                    <span>Dark Editorial — Styled by Saanze</span>
                 </div>
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <a href="#">FAQ</a>
-                    <a href="#">Shipping</a>
-                    <a href="#">Returns</a>
-                    <a href="#">Size Guide</a>
+            </div>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/halter top .jpeg" alt="Model wearing Burgundy Corset Lace-Up">
+                <div class="lookbook-caption">
+                    <h4>Floral Halter Top</h4>
+                    <span>Dark Editorial — Styled by Saanze</span>
                 </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <a href="#">About Saanze</a>
-                    <a href="#">Our Story</a>
-                    <a href="#">Press</a>
-                    <a href="#">Contact</a>
+            </div>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/halter neck front.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
+                <div class="lookbook-caption">
+                    <h4>Floral Halter Top</h4>
+                    <span>Dark Editorial — Styled by Saanze</span>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Saanze. All rights reserved. Handcrafted with 💜</p>
-        </div>
-    </footer>
+    </section>
+   
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-check-circle"></i>
-        <span>Added to bag! 🔥</span>
+    <section class="cta-section" id="order">
+        <div class="cta-content reveal-up">
+            <h1 class = "hero-title2">
+            <span STYLE ="height: 70px;" class="title-line gradient-text" data-scroll="" style="opacity: 1; transform: translateY(0px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);">PLACE ORDER</span></h1>
+
+            <div class="saanze-form-wrap">
+                <div class="sf-tag"><span class="pulse-dot"></span> Place Your Order</div>
+                <div class="sf-title">Get The Piece<span class="accent">.</span></div>
+                <p class="sf-sub">Handcrafted just for you — takes 2 mins 💅</p>
+
+                <div class="sf-step-row">
+                    <div class="sf-step active" id="sf-s1"><span class="sf-step-num">1</span> You</div>
+                    <div class="sf-step-line"></div>
+                    <div class="sf-step" id="sf-s2"><span class="sf-step-num">2</span> Pick</div>
+                    <div class="sf-step-line"></div>
+                    <div class="sf-step" id="sf-s3"><span class="sf-step-num">3</span> Fit</div>
+                </div>
+
+                <!-- Step 1: Contact -->
+                <div class="sf-panel active" id="sf-p1">
+                    <div class="sf-field">
+                        <label class="sf-label">Full Name</label>
+                        <input class="sf-input" id="sf-name" placeholder="Your name" />
+                    </div>
+                    <div class="sf-row2">
+                        <div class="sf-field">
+                            <label class="sf-label">Email</label>
+                            <input class="sf-input" id="sf-email" type="email" placeholder="email@you.com" />
+                        </div>
+                        <div class="sf-field">
+                            <label class="sf-label">Phone</label>
+                            <input class="sf-input" id="sf-phone" placeholder="+91 XXXXX XXXXX" />
+                        </div>
+                    </div>
+                    <div class="sf-field">
+                        <label class="sf-label">Delivery Address</label>
+                        <textarea class="sf-textarea" id="sf-addr" rows="3"
+                            placeholder="Full delivery address with pincode"></textarea>
+                    </div>
+                    <div class="sf-btn-row">
+                        <div></div>
+                        <button class="sf-btn-next" onclick="sfGoTo(2)">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Product Pick -->
+                <div class="sf-panel" id="sf-p2">
+                    <div class="sf-field">
+                        <label class="sf-label">Which piece do you want?</label>
+                        <div class="sf-product-grid">
+                            <div class="sf-product-pick" onclick="sfSelectProduct(this,'White Crop Shirt')">
+                                <div class="sf-emoji">🤍</div>
+                                <div class="sf-pname">White Crop Shirt</div>
+                                <div class="sf-pprice">₹799</div>
+                            </div>
+                            <div class="sf-product-pick" onclick="sfSelectProduct(this,'Burgundy Corset Lace-Up')">
+                                <div class="sf-emoji">🍷</div>
+                                <div class="sf-pname">Burgundy Corset</div>
+                                <div class="sf-pprice">₹799</div>
+                            </div>
+                            <div class="sf-product-pick" onclick="sfSelectProduct(this,'Floral Halter Top')">
+                                <div class="sf-emoji">🌸</div>
+                                <div class="sf-pname">Floral Halter Top</div>
+                                <div class="sf-pprice">₹699</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sf-btn-row">
+                        <button class="sf-btn-back" onclick="sfGoTo(1)">← Back</button>
+                        <button class="sf-btn-next" onclick="sfGoTo(3)">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Measurements -->
+                <div class="sf-panel" id="sf-p3">
+                    <div id="sf-selected-tag-wrap"></div>
+                    <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing
+                        minimal clothing.</p>
+                    <div class="sf-measure-grid">
+                        <div class="sf-field sf-measure-field">
+                            <label class="sf-label">Bust / Chest</label>
+                            <input class="sf-input" id="sf-bust" type="number" placeholder="e.g. 34" />
+                            <span class="sf-unit">in</span>
+                        </div>
+                        <div class="sf-field sf-measure-field">
+                            <label class="sf-label">Waist</label>
+                            <input class="sf-input" id="sf-waist" type="number" placeholder="e.g. 28" />
+                            <span class="sf-unit">in</span>
+                        </div>
+                        <div class="sf-field sf-measure-field">
+                            <label class="sf-label">Shoulder</label>
+                            <input class="sf-input" id="sf-shoulder" type="number" placeholder="e.g. 15" />
+                            <span class="sf-unit">in</span>
+                        </div>
+                        <div class="sf-field sf-measure-field">
+                            <label class="sf-label">Torso Length</label>
+                            <input class="sf-input" id="sf-torso" type="number" placeholder="e.g. 16" />
+                            <span class="sf-unit">in</span>
+                        </div>
+                    </div>
+                    <div class="sf-btn-row">
+                        <button class="sf-btn-back" onclick="sfGoTo(2)">← Back</button>
+                        <button class="sf-btn-next" onclick="sfSubmit()">Place Order ✦</button>
+                    </div>
+                </div>
+
+                <!-- Success State -->
+                <div class="sf-panel" id="sf-psuccess">
+                    <div class="sf-success">
+                        <div class="sf-check">✦</div>
+                        <h3>Order Placed<span class="accent">!</span></h3>
+                        <p id="sf-success-msg">We'll confirm via WhatsApp / email soon. Stay iconic 💜</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="logo"><span class="logo-text">SAANZE</span><span class="logo-dot">.</span></div>
+            <p>where elegance meets edge. ✨</p>
+            <div class="footer-socials">
+                <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <a href="#">Collection</a>
+                <a href="#">Lookbook</a>
+                <a href="#">Sale</a>
+                <a href="#">Gift Cards</a>
+            </div>
+           
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Saanze</a>
+                <a href="#">Our Story</a>
+               
+                <a href="#">Contact</a>
+            </div>
+        </div>
     </div>
+    <div class="footer-bottom">
+        <p>© 2026 Saanze. All rights reserved. Handcrafted with 💜</p>
+    </div>
+</footer>
 
-    <script src="script.js"></script>
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span>Added to bag! 🔥</span>
+</div>
+
+<script src="script.js"></script>
 </body>
+
 </html>

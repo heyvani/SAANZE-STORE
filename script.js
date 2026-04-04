@@ -178,3 +178,95 @@ document.addEventListener('DOMContentLoaded', () => {
         'color: #c8ff00; font-size: 14px; padding: 10px;'
     );
 });
+// ═══════════════════════════════════════════
+// SAANZE ORDER FORM — paste into your script.js
+// ═══════════════════════════════════════════
+
+let sfStep = 1;
+let sfProduct = '';
+
+function sfGoTo(n) {
+    if (n === 2 && !sfValidate1()) return;
+    if (n === 3 && !sfProduct) { alert('Pick a piece first 🛍️'); return; }
+
+    // Deactivate current step
+    const prevPanel = document.getElementById('sf-p' + sfStep);
+    const prevStep  = document.getElementById('sf-s' + sfStep);
+    if (prevPanel) prevPanel.classList.remove('active');
+    if (prevStep)  { prevStep.classList.remove('active'); prevStep.classList.add('done'); }
+
+    // Activate next step
+    sfStep = n;
+    const nextPanel = document.getElementById('sf-p' + n);
+    const nextStep  = document.getElementById('sf-s' + n);
+    if (nextPanel) nextPanel.classList.add('active');
+    if (nextStep)  { nextStep.classList.remove('done'); nextStep.classList.add('active'); }
+
+    // Show selected product tag on step 3
+    if (n === 3) {
+        const wrap = document.getElementById('sf-selected-tag-wrap');
+        wrap.innerHTML = sfProduct
+            ? '<span class="sf-selected-tag">' + sfProduct + '</span>'
+            : '';
+    }
+}
+
+function sfValidate1() {
+    const name  = document.getElementById('sf-name').value.trim();
+    const email = document.getElementById('sf-email').value.trim();
+    const phone = document.getElementById('sf-phone').value.trim();
+    const addr  = document.getElementById('sf-addr').value.trim();
+    if (!name || !email || !phone || !addr) {
+        alert('Fill in all fields first ✦');
+        return false;
+    }
+    return true;
+}
+
+function sfSelectProduct(el, name) {
+    document.querySelectorAll('.sf-product-pick').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+    sfProduct = name;
+}
+
+async function sfSubmit() {
+    const bust     = document.getElementById('sf-bust').value;
+    const waist    = document.getElementById('sf-waist').value;
+    const shoulder = document.getElementById('sf-shoulder').value;
+    const torso    = document.getElementById('sf-torso').value;
+
+    if (!bust || !waist || !shoulder || !torso) {
+        alert('Add all measurements so we can fit it perfectly 📏');
+        return;
+    }
+
+    // ── Send to Formspree ──
+    // Replace YOUR_FORM_ID with your actual Formspree ID
+    try {
+        await fetch('https://formspree.io/f/mwvwwvkb', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name:    document.getElementById('sf-name').value,
+                email:   document.getElementById('sf-email').value,
+                phone:   document.getElementById('sf-phone').value,
+                address: document.getElementById('sf-addr').value,
+                product: sfProduct,
+                bust,
+                waist,
+                shoulder,
+                torso
+            })
+        });
+    } catch (err) {
+        console.error('Form submission error:', err);
+    }
+
+    // Show success state
+    document.getElementById('sf-p3').classList.remove('active');
+    document.getElementById('sf-s3').classList.remove('active');
+    document.getElementById('sf-s3').classList.add('done');
+    document.getElementById('sf-psuccess').classList.add('active');
+    document.getElementById('sf-success-msg').textContent =
+        'Your ' + sfProduct + ' order is in! We\'ll confirm via WhatsApp / email soon. Stay iconic 💜';
+}
