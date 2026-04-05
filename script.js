@@ -109,16 +109,20 @@ function openCartTab() {
     }
 
     const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
     const itemsHTML = cart.map(item => `
-        <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
-            <div style="width:70px;height:90px;background:#1a1a1a;border-radius:12px;overflow:hidden;flex-shrink:0;">
-                ${item.img ? `<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;" alt="${item.name}">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">👜</div>'}
+        <div style="display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(196,150,58,0.12);">
+            <div style="width:68px;height:86px;background:#EDE5D8;border-radius:12px;overflow:hidden;flex-shrink:0;border:1px solid rgba(196,150,58,0.15);">
+                ${item.img
+                    ? `<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;" alt="${item.name}">`
+                    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">👜</div>`
+                }
             </div>
-            <div style="flex:1;">
-                <div style="font-family:Syne,sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:-0.5px;">${item.name}</div>
-                <div style="color:#888;font-size:0.8rem;margin-top:4px;">Qty: ${item.qty}</div>
+            <div style="flex:1;min-width:0;">
+                <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.5px;color:#3D1A0E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</div>
+                <div style="font-size:0.75rem;color:#B89880;letter-spacing:1px;text-transform:uppercase;">Qty: ${item.qty}</div>
             </div>
-            <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.1rem;color:#c8ff00;">₹${(item.price * item.qty).toLocaleString()}</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.25rem;color:#C4963A;flex-shrink:0;">₹${(item.price * item.qty).toLocaleString()}</div>
         </div>
     `).join('');
 
@@ -127,47 +131,191 @@ function openCartTab() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Your Bag — SAANZE</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Your Bag — SAANZÉ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#0a0a0a;color:#fff;font-family:'Space Grotesk',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
-  .bag-wrap{max-width:540px;width:100%;background:#111;border-radius:24px;border:1px solid rgba(255,255,255,0.07);padding:2.5rem;position:relative;overflow:hidden;}
-  .bag-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;background:#c8ff00;border-radius:50%;filter:blur(100px);opacity:0.08;}
-  .bag-logo{font-family:Syne,sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-2px;margin-bottom:0.3rem;}
-  .bag-logo span{color:#c8ff00;}
-  .bag-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(200,255,0,0.08);border:1px solid rgba(200,255,0,0.2);border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c8ff00;margin-bottom:1.5rem;}
-  .bag-items{margin:1.5rem 0;}
-  .bag-total-row{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;margin-top:0.5rem;}
-  .bag-total-label{font-family:Syne,sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;}
-  .bag-total-price{font-family:Syne,sans-serif;font-size:2rem;font-weight:800;color:#c8ff00;}
-  .bag-note{font-size:0.8rem;color:#555;margin-bottom:1.5rem;line-height:1.5;border-left:2px solid rgba(200,255,0,0.3);padding-left:10px;}
-  .bag-btn{display:block;width:100%;padding:1.1rem;background:#c8ff00;color:#000;border:none;border-radius:50px;font-family:Syne,sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all 0.25s;text-align:center;text-decoration:none;}
-  .bag-btn:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(200,255,0,0.3);}
-  .bag-continue{display:block;text-align:center;margin-top:1rem;color:#555;font-size:0.85rem;text-decoration:none;transition:color 0.2s;}
-  .bag-continue:hover{color:#c8ff00;}
-  .empty-state{text-align:center;padding:3rem 0;}
-  .empty-icon{font-size:3rem;margin-bottom:1rem;}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    min-height: 100vh;
+    background: #FAF7F2;
+    font-family: 'DM Sans', sans-serif;
+    color: #1C0D08;
+  }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+    background-image:
+      radial-gradient(ellipse 600px 400px at 80% -10%, rgba(196,150,58,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 400px at -5% 80%, rgba(139,38,53,0.07) 0%, transparent 70%);
+  }
+
+  .bag-wrap {
+    max-width: 520px; width: 100%;
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid rgba(196,150,58,0.18);
+    box-shadow: 0 24px 80px rgba(61,26,14,0.1), 0 2px 8px rgba(196,150,58,0.08);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+
+  /* top accent bar */
+  .bag-wrap::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3D1A0E 0%, #C4963A 40%, #D4B87A 60%, #8B2635 100%);
+  }
+
+  /* subtle grain */
+  .bag-wrap::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none; border-radius: 24px;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .bag-header {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .bag-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: #3D1A0E;
+    line-height: 1;
+  }
+  .bag-logo-dot { color: #C4963A; }
+
+  .bag-tagline {
+    font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #C4963A; font-weight: 500; margin-bottom: 1.5rem;
+  }
+
+  .bag-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(196,150,58,0.08); border: 1px solid rgba(196,150,58,0.22);
+    border-radius: 50px; padding: 5px 14px;
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #C4963A; margin-bottom: 1.5rem;
+  }
+  .bag-pill-dot {
+    width: 6px; height: 6px; background: #C4963A; border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  .bag-items { margin-bottom: 0.5rem; }
+
+  .bag-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,150,58,0.25), transparent);
+    margin: 0.5rem 0;
+  }
+
+  .bag-total-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 0;
+  }
+  .bag-total-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #B89880;
+  }
+  .bag-total-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700; color: #3D1A0E;
+  }
+  .bag-total-price span { color: #C4963A; }
+
+  .bag-note {
+    font-size: 0.78rem; color: #B89880; margin-bottom: 1.5rem; line-height: 1.6;
+    border-left: 2px solid rgba(196,150,58,0.3); padding-left: 12px;
+  }
+
+  .bag-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    width: 100%; padding: 1.1rem 2rem;
+    background: #3D1A0E; color: #FAF7F2;
+    border: none; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    cursor: pointer; text-decoration: none; text-align: center;
+    transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    position: relative; overflow: hidden;
+  }
+  .bag-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #C4963A, #8B2635);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .bag-btn:hover::before { opacity: 1; }
+  .bag-btn span { position: relative; z-index: 1; }
+  .bag-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(61,26,14,0.25); }
+
+  .bag-btn-outline {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; padding: 0.9rem 2rem; margin-top: 0.8rem;
+    background: transparent;
+    border: 1.5px solid rgba(61,26,14,0.15); border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 500;
+    color: #7A5C4A; letter-spacing: 0.5px;
+    cursor: pointer; text-decoration: none; text-align: center;
+    transition: all 0.25s;
+  }
+  .bag-btn-outline:hover { border-color: #C4963A; color: #C4963A; }
+
+  .bag-empty {
+    text-align: center; padding: 3rem 0;
+  }
+  .bag-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .bag-empty-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #B89880;
+  }
 </style>
 </head>
 <body>
 <div class="bag-wrap">
-  <div class="bag-logo">SAANZE<span>.</span></div>
-  <div class="bag-tag">● Your Bag</div>
+  <div class="bag-header">
+    <span class="bag-logo-text">SAANZÉ<span class="bag-logo-dot">.</span></span>
+  </div>
+  <div class="bag-tagline">Feel The Vibes</div>
+
+  <div class="bag-pill">
+    <span class="bag-pill-dot"></span>
+    Your Bag
+  </div>
+
   <div class="bag-items">${itemsHTML}</div>
+
+  <div class="bag-divider"></div>
+
   <div class="bag-total-row">
     <span class="bag-total-label">Total</span>
-    <span class="bag-total-price">₹${total.toLocaleString()}</span>
+    <span class="bag-total-price">₹<span>${total.toLocaleString()}</span></span>
   </div>
-  <p class="bag-note">Each piece is handcrafted to your measurements. Clicking "Buy Now" takes you to our order form to complete your custom fit details. 💅</p>
-  <a class="bag-btn" href="javascript:void(0)" onclick="goToOrder()">Buy Now — Place Order ✦</a>
-  <a class="bag-continue" href="javascript:window.close()">← Continue Shopping</a>
+
+  <p class="bag-note">Each piece is handcrafted to your measurements. "Buy Now" takes you to our order form to complete your custom fit. 💅</p>
+
+  <a class="bag-btn" href="javascript:void(0)" onclick="goToOrder()">
+    <span>Buy Now — Place Order ✦</span>
+  </a>
+  <a class="bag-btn-outline" href="javascript:window.close()">← Continue Shopping</a>
 </div>
+
 <script>
-function goToOrder(){
+function goToOrder() {
   window.opener && window.opener.focus();
   try { window.opener.scrollToOrder(); } catch(e) {}
-  setTimeout(()=>window.close(), 300);
+  setTimeout(() => window.close(), 300);
 }
 </script>
 </body>
@@ -193,14 +341,11 @@ function openProductModal(card) {
     const reviews = card.dataset.reviews;
     const img     = card.dataset.img;
 
-    // Collect all images for this product (main + up to 3 extras)
     const extraImgs = [card.dataset.img2, card.dataset.img3, card.dataset.img4].filter(Boolean);
 
-    // Set main image
     const mainImgEl = document.getElementById('modalMainImg');
     mainImgEl.src = img;
 
-    // Fill the 3 thumbnail slots dynamically
     const slotsContainer = document.querySelector('.modal-image-slots');
     slotsContainer.innerHTML = '';
 
@@ -209,7 +354,6 @@ function openProductModal(card) {
         slot.className = 'modal-img-slot modal-img-slot--filled';
         slot.innerHTML = `<img src="${src}" alt="View ${i + 2}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
         slot.addEventListener('click', () => {
-            // Swap: clicked thumbnail becomes main, main goes to this slot
             const prev = mainImgEl.src;
             mainImgEl.style.opacity = '0';
             setTimeout(() => {
@@ -217,14 +361,12 @@ function openProductModal(card) {
                 mainImgEl.style.opacity = '1';
             }, 180);
             slot.querySelector('img').src = prev;
-            // Highlight active slot
             slotsContainer.querySelectorAll('.modal-img-slot').forEach(s => s.classList.remove('active-slot'));
             slot.classList.add('active-slot');
         });
         slotsContainer.appendChild(slot);
     });
 
-    // If fewer than 3 extras, fill remaining with placeholder slots
     for (let i = extraImgs.length; i < 3; i++) {
         const slot = document.createElement('div');
         slot.className = 'modal-img-slot';
@@ -232,14 +374,12 @@ function openProductModal(card) {
         slotsContainer.appendChild(slot);
     }
 
-    // Set text info
     document.getElementById('modalTitle').textContent = name;
     document.getElementById('modalPrice').textContent = price;
     document.getElementById('modalPriceOg').textContent = ogPrice;
     document.getElementById('modalBadge').textContent = badge;
     document.getElementById('modalReviews').textContent = reviews + ' reviews';
 
-    // Wire up buttons
     const priceNum = price.replace(/[₹,]/g, '');
     document.getElementById('modalCartBtn').onclick = () => {
         addToCart(name, priceNum, img);
@@ -266,7 +406,6 @@ function openProductModal(card) {
         }, 300);
     };
 
-    // Fav button state
     const isFaved = favs.some(f => f.name === name);
     document.getElementById('modalFavBtn').innerHTML = isFaved
         ? '<i class="fa-solid fa-heart"></i> Saved ✓'
@@ -298,19 +437,15 @@ function closeSearch() {
 function doSearch(query) {
     const q = query.toLowerCase().trim();
     const resultsEl = document.getElementById('searchResults');
-
     if (!q) { resultsEl.innerHTML = ''; return; }
-
     const hits = PRODUCT_INDEX.filter(p =>
         p.name.toLowerCase().includes(q) ||
         p.keywords.some(k => k.includes(q) || q.includes(k))
     );
-
     if (hits.length === 0) {
         resultsEl.innerHTML = '<div class="search-no-results">No results for "' + query + '" 😔<br><span>Try: corset · white · halter · lookbook</span></div>';
         return;
     }
-
     resultsEl.innerHTML = hits.map(hit => `
         <div class="search-result-item" onclick="goToSection('${hit.section}')">
             <div class="search-result-img">
@@ -318,7 +453,7 @@ function doSearch(query) {
             </div>
             <div class="search-result-info">
                 <div class="search-result-name">${hit.name}</div>
-                ${hit.price ? `<div class="search-result-price">${hit.price}</div>` : '<div class="search-result-price" style="color:#888">→ Jump to section</div>'}
+                ${hit.price ? `<div class="search-result-price">${hit.price}</div>` : '<div class="search-result-price" style="color:#B89880">→ Jump to section</div>'}
             </div>
             <div class="search-result-arrow">→</div>
         </div>
@@ -336,7 +471,6 @@ function goToSection(selector) {
 // ── DOMContentLoaded ──
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Init badges
     updateBadges();
     updateHeartButtons();
 
@@ -437,11 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300 + i * 200);
     });
 
-    // ══════════════════════════════════════
-    // NEW FEATURES
-    // ══════════════════════════════════════
-
-    // ── 1. Pre-order link → scroll to form ──
+    // ── Pre-order link ──
     document.querySelectorAll('.preorder-link').forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
@@ -449,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── 2. Search button ──
+    // ── Search ──
     document.getElementById('searchBtn').addEventListener('click', openSearch);
     document.getElementById('searchClose').addEventListener('click', closeSearch);
     document.getElementById('searchOverlay').addEventListener('click', e => {
@@ -457,16 +587,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('searchInput').addEventListener('input', e => doSearch(e.target.value));
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeSearch();
-            closeProductModal();
-        }
+        if (e.key === 'Escape') { closeSearch(); closeProductModal(); }
     });
 
-    // ── 3. Cart button → open new tab ──
+    // ── Cart ──
     document.getElementById('cartBtn').addEventListener('click', openCartTab);
 
-    // ── 4. Fav button (navbar) → scroll to first faved product or show toast ──
+    // ── Favs ──
     document.getElementById('favBtn').addEventListener('click', () => {
         if (favs.length === 0) {
             showToast('No faves yet — heart a piece! 💜');
@@ -475,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ── 5. Heart buttons on product cards ──
+    // ── Heart buttons ──
     document.querySelectorAll('.card-heart-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
@@ -483,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── 6. Quick Add (cart) ──
+    // ── Quick Add ──
     document.querySelectorAll('.quick-add').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
@@ -493,22 +620,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── 7. Product card click → open modal ──
+    // ── Product card → modal ──
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', e => {
-            // Don't open modal if clicking heart or quick-add
             if (e.target.closest('.card-heart-btn') || e.target.closest('.quick-add')) return;
             openProductModal(card);
         });
     });
 
-    // ── 8. Modal close ──
+    // ── Modal close ──
     document.getElementById('modalClose').addEventListener('click', closeProductModal);
     document.getElementById('productModalOverlay').addEventListener('click', e => {
         if (e.target === document.getElementById('productModalOverlay')) closeProductModal();
     });
 
-    // ── 9. Smooth scroll for all anchor links ──
+    // ── Smooth scroll anchors ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = document.querySelector(this.getAttribute('href'));
@@ -516,9 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log('%c SAANZE. %c ✦ Feel The Vibes ✦',
-        'background:#c8ff00;color:#000;font-size:20px;font-weight:900;padding:10px 20px;border-radius:8px;',
-        'color:#c8ff00;font-size:14px;padding:10px;'
+    console.log('%c SAANZÉ. %c ✦ Feel The Vibes ✦',
+        'background:#C4963A;color:#3D1A0E;font-size:18px;font-weight:900;padding:10px 20px;border-radius:8px;',
+        'color:#C4963A;font-size:13px;padding:10px;'
     );
 });
 
@@ -597,7 +723,6 @@ async function sfSubmit() {
     document.getElementById('sf-success-msg').textContent =
         'Your ' + sfProduct + ' order is in! We\'ll confirm via WhatsApp / email soon. Stay iconic 💜';
 
-    // Clear cart after successful order
     cart = [];
     saveCart();
     updateBadges();
