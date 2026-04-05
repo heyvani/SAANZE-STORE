@@ -1,6 +1,7 @@
 // ═══════════════════════════════════════════
 // LOCO — Gen-Z Interactive Experience
 // ═══════════════════════════════════════════
+import { Analytics } from "@vercel/analytics/next"
 
 document.addEventListener('DOMContentLoaded', () => {
 
