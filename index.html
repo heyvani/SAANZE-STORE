@@ -7,19 +7,72 @@
     <title>Saanze | Feel The Vibes ✦</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body></body>
+<body>
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursor-follower"></div>
 
 <!-- Grain Overlay -->
 <div class="grain-overlay"></div>
+
+<!-- ══════════════════════════════════════
+     SEARCH OVERLAY
+══════════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-inner">
+        <button class="search-close" id="searchClose"><i class="fa-solid fa-xmark"></i></button>
+        <div class="search-box-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon-big"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search pieces... try 'corset' or 'white'" autocomplete="off"/>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+        <p class="search-hint">Try: white corset · halter top · burgundy · crop shirt</p>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PRODUCT MODAL
+══════════════════════════════════════ -->
+<div class="product-modal-overlay" id="productModalOverlay">
+    <div class="product-modal" id="productModal">
+        <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-inner">
+            <div class="modal-images">
+                <div class="modal-main-image">
+                    <img id="modalMainImg" src="" alt="">
+                </div>
+                <div class="modal-image-slots">
+                    <div class="modal-img-slot"><span><img src = "assets/floral_halter_top.jpg"></span></div>
+                    <div class="modal-img-slot"><span><img src = "assets/red corset back.jpeg"></span></div>
+                    <div class="modal-img-slot"><span><img src = "assets/white_crop_shirt.jpg"></span></div>
+                </div>
+            </div>
+            <div class="modal-details">
+                <div class="modal-badge-row">
+                    <span class="modal-badge" id="modalBadge">TRENDING 🔥</span>
+                </div>
+                <h2 class="modal-title" id="modalTitle">Product Name</h2>
+                <div class="modal-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="modal-review-count" id="modalReviews">214 reviews</span>
+                </div>
+                <div class="modal-price-row">
+                    <span class="modal-price" id="modalPrice">₹699</span>
+                    <span class="modal-price-og" id="modalPriceOg">₹999</span>
+                </div>
+                <p class="modal-desc" id="modalDesc">Handcrafted with love — each piece is made to order just for you. Tailored to your measurements for the perfect fit.</p>
+                <div class="modal-actions">
+                    <button class="modal-fav-btn" id="modalFavBtn"><i class="fa-solid fa-heart"></i> Save to Faves</button>
+                    <button class="modal-cart-btn" id="modalCartBtn"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                </div>
+                <button class="modal-order-btn" id="modalOrderBtn">Pre-order This Piece ✦</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Navigation -->
 <header id="navbar">
@@ -29,16 +82,14 @@
             <span class="logo-dot">.</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="nav-link magnetic-btn" data-text="Collections">Collections</a></li>
             <li><a href="#catalogue" class="nav-link magnetic-btn" data-text="Catalogue">Catalogue</a></li>
             <li><a href="#lookbook" class="nav-link magnetic-btn" data-text="Lookbook">Lookbook</a></li>
-            <li><a href="#" class="nav-link magnetic-btn" data-text="Drops">New Drops 🔥</a></li>
+            <li><a href="#order" class="nav-link magnetic-btn preorder-link" data-text="Drops">Pre-order🔥</a></li>
         </ul>
         <div class="nav-actions">
-            <button class="icon-btn magnetic-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <button class="icon-btn magnetic-btn"><i class="fa-solid fa-heart"></i><span class="badge">2</span></button>
-            <button class="icon-btn magnetic-btn cart-btn"><i class="fa-solid fa-bag-shopping"></i><span
-                    class="badge">0</span></button>
+            <button class="icon-btn magnetic-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn magnetic-btn" id="favBtn"><i class="fa-solid fa-heart"></i><span class="badge" id="favBadge">0</span></button>
+            <button class="icon-btn magnetic-btn cart-btn" id="cartBtn"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cartBadge">0</span></button>
         </div>
     </nav>
 </header>
@@ -63,8 +114,7 @@
                 <span class="title-line gradient-text" data-scroll>VIBES</span>
                 <span class="title-sparkle">✦</span>
             </h1>
-            <p class="hero-subtitle">Saanze — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨
-            </p>
+            <p class="hero-subtitle">Saanze — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨</p>
             <div class="hero-cta">
                 <a href="#catalogue" class="btn-glow magnetic-btn">
                     <span>Shop the Collection</span>
@@ -137,81 +187,104 @@
 
         <div class="product-grid">
             <!-- Floral Halter Top -->
-            <div class="product-card tilt-card reveal-up">
+            <div class="product-card tilt-card reveal-up"
+                data-product-id="1"
+                data-name="Floral Halter Top"
+                data-price="₹699"
+                data-og-price="₹999"
+                data-badge="TRENDY🔥"
+                data-reviews="214"
+                data-img="assets/floral_halter_top.jpg"
+                data-img2="assets/halter top .jpeg"
+                data-img3="assets/halter neck front.jpeg"
+                data-img4="assets/floral_halter_top.jpg"
+                data-product-key="Floral Halter Top">
                 <div class="product-image-wrapper">
                     <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image">
                     <div class="product-overlay">
-                        <button class="quick-add magnetic-btn">Quick Add +</button>
+                        <button class="quick-add magnetic-btn" data-product="Floral Halter Top" data-price="699" data-img="assets/floral_halter_top.jpg">Add to Cart +</button>
                     </div>
                     <span class="product-badge hot">TRENDY🔥</span>
+                    <button class="card-heart-btn" data-product="Floral Halter Top" data-price="699" data-img="assets/floral_halter_top.jpg" title="Add to Favourites">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
                 </div>
                 <div class="product-info">
                     <h4>Floral Halter Top</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span></div>
-                        <div style="font-size:40px;" class="price"> <span class="price-cents"><S>₹999</S>₹699</span>
-                        </div>
+                        <div style="font-size:40px;" class="price"><span class="price-cents"><s>₹999</s>₹699</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Burgundy Corset Lace-Up -->
-            <div class="product-card tilt-card reveal-up">
+            <div class="product-card tilt-card reveal-up"
+                data-product-id="2"
+                data-name="Burgundy Corset Lace-Up"
+                data-price="₹799"
+                data-og-price="₹999"
+                data-badge="FIRE 🔥"
+                data-reviews="187"
+                data-img="assets/burgundy_corset_front.jpg"
+                data-img2="assets/red corset.jpeg"
+                data-img3="assets/red corset back.jpeg"
+                data-img4="assets/burgundy_corset_img4.jpg"
+                data-product-key="Burgundy Corset Lace-Up">
                 <div class="product-image-wrapper">
                     <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image">
                     <div class="product-overlay">
-                        <button class="quick-add magnetic-btn">Quick Add +</button>
+                        <button class="quick-add magnetic-btn" data-product="Burgundy Corset Lace-Up" data-price="799" data-img="assets/burgundy_corset_front.jpg">Add to Cart +</button>
                     </div>
                     <span class="product-badge hot">FIRE 🔥</span>
+                    <button class="card-heart-btn" data-product="Burgundy Corset Lace-Up" data-price="799" data-img="assets/burgundy_corset_front.jpg" title="Add to Favourites">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
                 </div>
                 <div class="product-info">
                     <h4>Burgundy Corset Lace-Up</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span></div>
-                        <div class="price"><span class="price-cents"><S>₹999</S>₹799</span></div>
+                        <div class="price"><span class="price-cents"><s>₹999</s>₹799</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- White Crop Shirt -->
-            <div class="product-card tilt-card reveal-up">
+            <div class="product-card tilt-card reveal-up"
+                data-product-id="3"
+                data-name="White Crop Shirt"
+                data-price="₹799"
+                data-og-price="₹999"
+                data-badge="NEW 🔥"
+                data-reviews="156"
+                data-img="assets/white_crop_shirt.jpg"
+                data-img2="assets/white top front.jpeg"
+                data-img3="assets/white top back.jpeg"
+                data-img4="assets/white_crop_img4.jpg"
+                data-product-key="White Crop Shirt">
                 <div class="product-image-wrapper">
                     <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image">
                     <div class="product-overlay">
-                        <button class="quick-add magnetic-btn">Quick Add +</button>
+                        <button class="quick-add magnetic-btn" data-product="White Crop Shirt" data-price="799" data-img="assets/white_crop_shirt.jpg">Add to Cart +</button>
                     </div>
-                    =<span class="product-badge hot">NEW 🔥</span>
+                    <span class="product-badge hot">NEW 🔥</span>
+                    <button class="card-heart-btn" data-product="White Crop Shirt" data-price="799" data-img="assets/white_crop_shirt.jpg" title="Add to Favourites">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
                 </div>
                 <div class="product-info">
                     <h4>White Crop Shirt</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span></div>
-                        <div class="price"><span class="price-cents"><S>₹999</S> ₹799</span></div>
+                        <div class="price"><span class="price-cents"><s>₹999</s>₹799</span></div>
                     </div>
                 </div>
             </div>
-
-            <!-- Burgundy Corset Top
-                <div class="product-card tilt-card reveal-up">
-                    <div class="product-image-wrapper">
-                        <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Top" class="product-image">
-                        <div class="product-overlay">
-                            <button class="quick-add magnetic-btn">Quick Add +</button>
-                        </div>
-                        <span class="product-badge hot">VIRAL 🔥</span>
-                    </div>
-                    <div class="product-info">
-                        <h4>Burgundy Corset Top</h4>
-                        <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">243</span></div>
-                            <div class="price">$49<span class="price-cents">.00</span></div>
-                        </div>
-                     </div> -->
         </div>
-    </div>
     </section>
 
-    <!-- Lookbook Section — Models wearing the dresses -->
+    <!-- Lookbook Section -->
     <section id="lookbook" class="lookbook-section">
         <div class="section-header reveal-up">
             <div class="section-tag">
@@ -236,7 +309,6 @@
                     <h4>Burgundy Corset Top</h4>
                     <span>Golden Hour — Styled by Saanze</span>
                 </div>
-
             </div>
             <div class="lookbook-card tilt-card reveal-up">
                 <img src="assets/white top front.jpeg" alt="Model wearing White Crop Shirt">
@@ -269,13 +341,11 @@
         </div>
     </section>
 
-
+    <!-- Order / CTA Section -->
     <section class="cta-section" id="order">
         <div class="cta-content reveal-up">
             <h1 class="hero-title2">
-                <span STYLE="height: 70px;" class="title-line gradient-text" data-scroll=""
-                    style="opacity: 1; transform: translateY(0px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);">PLACE
-                    ORDER</span>
+                <span style="height:70px;" class="title-line gradient-text" data-scroll="" style="opacity:1;transform:translateY(0px);transition:0.8s cubic-bezier(0.16,1,0.3,1);">PLACE ORDER</span>
             </h1>
 
             <div class="saanze-form-wrap">
@@ -309,8 +379,7 @@
                     </div>
                     <div class="sf-field">
                         <label class="sf-label">Delivery Address</label>
-                        <textarea class="sf-textarea" id="sf-addr" rows="3"
-                            placeholder="Full delivery address with pincode"></textarea>
+                        <textarea class="sf-textarea" id="sf-addr" rows="3" placeholder="Full delivery address with pincode"></textarea>
                     </div>
                     <div class="sf-btn-row">
                         <div></div>
@@ -349,8 +418,7 @@
                 <!-- Step 3: Measurements -->
                 <div class="sf-panel" id="sf-p3">
                     <div id="sf-selected-tag-wrap"></div>
-                    <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing
-                        minimal clothing.</p>
+                    <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing minimal clothing.</p>
                     <div class="sf-measure-grid">
                         <div class="sf-field sf-measure-field">
                             <label class="sf-label">Bust / Chest</label>
@@ -387,14 +455,9 @@
                         <p id="sf-success-msg">We'll confirm via WhatsApp / email soon. Stay iconic 💜</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-
-
-
 </main>
 
 <!-- Footer -->
@@ -418,12 +481,10 @@
                 <a href="#">Sale</a>
                 <a href="#">Gift Cards</a>
             </div>
-
             <div class="footer-col">
                 <h4>Company</h4>
                 <a href="#">About Saanze</a>
                 <a href="#">Our Story</a>
-
                 <a href="#">Contact</a>
             </div>
         </div>
@@ -436,10 +497,9 @@
 <!-- Toast Notification -->
 <div class="toast" id="toast">
     <i class="fa-solid fa-check-circle"></i>
-    <span>Added to bag! 🔥</span>
+    <span id="toastMsg">Added to bag! 🔥</span>
 </div>
-<script src = "next.js"></script>
+
 <script src="script.js"></script>
 </body>
-
 </html>
