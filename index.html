@@ -4,38 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saanze | Feel The Vibes ✦</title>
+    <title>Saanzé | Feel The Vibes ✦</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursor-follower"></div>
-
-<!-- Grain Overlay -->
 <div class="grain-overlay"></div>
 
-<!-- ══════════════════════════════════════
-     SEARCH OVERLAY
-══════════════════════════════════════ -->
+<!-- SEARCH OVERLAY -->
 <div class="search-overlay" id="searchOverlay">
     <div class="search-overlay-inner">
         <button class="search-close" id="searchClose"><i class="fa-solid fa-xmark"></i></button>
         <div class="search-box-wrap">
             <i class="fa-solid fa-magnifying-glass search-icon-big"></i>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search pieces... try 'corset' or 'white'" autocomplete="off"/>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search pieces..." autocomplete="off"/>
         </div>
         <div class="search-results" id="searchResults"></div>
         <p class="search-hint">Try: white corset · halter top · burgundy · crop shirt</p>
     </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     PRODUCT MODAL
-══════════════════════════════════════ -->
+<!-- PRODUCT MODAL -->
 <div class="product-modal-overlay" id="productModalOverlay">
     <div class="product-modal" id="productModal">
         <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
@@ -45,9 +38,9 @@
                     <img id="modalMainImg" src="" alt="">
                 </div>
                 <div class="modal-image-slots">
-                    <div class="modal-img-slot"><span><img src = "assets/floral_halter_top.jpg"></span></div>
-                    <div class="modal-img-slot"><span><img src = "assets/red corset back.jpeg"></span></div>
-                    <div class="modal-img-slot"><span><img src = "assets/white_crop_shirt.jpg"></span></div>
+                    <div class="modal-img-slot"><span><img src="assets/floral_halter_top.jpg"></span></div>
+                    <div class="modal-img-slot"><span><img src="assets/red corset back.jpeg"></span></div>
+                    <div class="modal-img-slot"><span><img src="assets/white_crop_shirt.jpg"></span></div>
                 </div>
             </div>
             <div class="modal-details">
@@ -77,14 +70,17 @@
 <!-- Navigation -->
 <header id="navbar">
     <nav class="navbar">
-        <div class="logo">
-            <span class="logo-text">SAANZE</span>
-            <span class="logo-dot">.</span>
-        </div>
+        <a href="#hero" class="logo">
+            <img class="logo-img" src="assets/logo.png">
+            <div class="logo-text-wrap">
+                <span class="logo-text">SAANZÉ</span>
+                <span class="logo-tagline">Feel The Vibes</span>
+            </div>
+        </a>
         <ul class="nav-links">
-            <li><a href="#catalogue" class="nav-link magnetic-btn" data-text="Catalogue">Catalogue</a></li>
-            <li><a href="#lookbook" class="nav-link magnetic-btn" data-text="Lookbook">Lookbook</a></li>
-            <li><a href="#order" class="nav-link magnetic-btn preorder-link" data-text="Drops">Pre-order🔥</a></li>
+            <li><a href="#catalogue" class="nav-link magnetic-btn">Catalogue</a></li>
+            <li><a href="#lookbook" class="nav-link magnetic-btn">Lookbook</a></li>
+            <li><a href="#order" class="nav-link magnetic-btn preorder-link">Pre-order 🔥</a></li>
         </ul>
         <div class="nav-actions">
             <button class="icon-btn magnetic-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -106,7 +102,7 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse-dot"></span>
-                NEW COLLECTION 2026 — NOW LIVE
+                NEW COLLECTION 2026 — PRE-ORDER
             </div>
             <h1 class="hero-title">
                 <span class="title-line" data-scroll>FEEL</span>
@@ -114,7 +110,7 @@
                 <span class="title-line gradient-text" data-scroll>VIBES</span>
                 <span class="title-sparkle">✦</span>
             </h1>
-            <p class="hero-subtitle">Saanze — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨</p>
+            <p class="hero-subtitle">Saanzé — where elegance meets edge. handcrafted pieces for the bold & beautiful. ✨</p>
             <div class="hero-cta">
                 <a href="#catalogue" class="btn-glow magnetic-btn">
                     <span>Shop the Collection</span>
@@ -145,11 +141,11 @@
         <div class="hero-visual">
             <div class="hero-card-stack">
                 <div class="hero-card hero-card-1 tilt-card">
-                    <img src="assets/red corset.jpeg" alt="Saanze Burgundy Corset">
+                    <img src="assets/red corset.jpeg" alt="Saanzé Burgundy Corset">
                     <div class="hero-card-tag">TRENDING 🔥</div>
                 </div>
                 <div class="hero-card hero-card-2 tilt-card">
-                    <img src="assets/halter top .jpeg" alt="Saanze Floral Halter">
+                    <img src="assets/halter top .jpeg" alt="Saanzé Floral Halter">
                     <div class="hero-card-tag">NEW ✨</div>
                 </div>
             </div>
@@ -160,15 +156,15 @@
     <div class="marquee-section">
         <div class="marquee">
             <div class="marquee-content">
-                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>SAANZÉ — FEEL THE VIBES ✦</span>
                 <span>HANDCRAFTED WITH LOVE 💜</span>
                 <span>NEW COLLECTION LIVE 💎</span>
                 <span>ELEGANCE MEETS EDGE ✨</span>
-                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>SAANZÉ — FEEL THE VIBES ✦</span>
                 <span>HANDCRAFTED WITH LOVE 💜</span>
                 <span>NEW COLLECTION LIVE 💎</span>
                 <span>ELEGANCE MEETS EDGE ✨</span>
-                <span>SAANZE — FEEL THE VIBES ✦</span>
+                <span>SAANZÉ — FEEL THE VIBES ✦</span>
                 <span>HANDCRAFTED WITH LOVE 💜</span>
             </div>
         </div>
@@ -186,7 +182,6 @@
         </div>
 
         <div class="product-grid">
-            <!-- Floral Halter Top -->
             <div class="product-card tilt-card reveal-up"
                 data-product-id="1"
                 data-name="Floral Halter Top"
@@ -213,12 +208,11 @@
                     <h4>Floral Halter Top</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span></div>
-                        <div style="font-size:40px;" class="price"><span class="price-cents"><s>₹999</s>₹699</span></div>
+                        <div class="price"><span class="price-cents"><s>₹999</s></span> ₹699</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Burgundy Corset Lace-Up -->
             <div class="product-card tilt-card reveal-up"
                 data-product-id="2"
                 data-name="Burgundy Corset Lace-Up"
@@ -245,12 +239,11 @@
                     <h4>Burgundy Corset Lace-Up</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span></div>
-                        <div class="price"><span class="price-cents"><s>₹999</s>₹799</span></div>
+                        <div class="price"><span class="price-cents"><s>₹999</s></span> ₹799</div>
                     </div>
                 </div>
             </div>
 
-            <!-- White Crop Shirt -->
             <div class="product-card tilt-card reveal-up"
                 data-product-id="3"
                 data-name="White Crop Shirt"
@@ -277,7 +270,7 @@
                     <h4>White Crop Shirt</h4>
                     <div class="product-meta">
                         <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span></div>
-                        <div class="price"><span class="price-cents"><s>₹999</s>₹799</span></div>
+                        <div class="price"><span class="price-cents"><s>₹999</s></span> ₹799</div>
                     </div>
                 </div>
             </div>
@@ -297,55 +290,55 @@
 
         <div class="lookbook-grid">
             <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/red corset.jpeg" alt="Model wearing Burgundy Corset Top">
+                <img src="assets/red corset.jpeg" alt="Burgundy Corset Top">
                 <div class="lookbook-caption">
                     <h4>Burgundy Corset Top</h4>
-                    <span>Editorial Shot — Styled by Saanze</span>
+                    <span>Editorial Shot — Styled by Saanzé</span>
                 </div>
             </div>
             <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/red corset back.jpeg" alt="Model wearing Floral Halter Top">
+                <img src="assets/red corset back.jpeg" alt="Burgundy Corset Back">
                 <div class="lookbook-caption">
                     <h4>Burgundy Corset Top</h4>
-                    <span>Golden Hour — Styled by Saanze</span>
+                    <span>Golden Hour — Styled by Saanzé</span>
                 </div>
             </div>
             <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/white top front.jpeg" alt="Model wearing White Crop Shirt">
+                <img src="assets/white top front.jpeg" alt="White Crop Shirt">
                 <div class="lookbook-caption">
                     <h4>White Crop Shirt</h4>
-                    <span>Studio Clean — Styled by Saanze</span>
+                    <span>Studio Clean — Styled by Saanzé</span>
                 </div>
             </div>
             <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/white top back.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
+                <img src="assets/white top back.jpeg" alt="White Crop Back">
                 <div class="lookbook-caption">
-                    <h4>White Crop shirt</h4>
-                    <span>Dark Editorial — Styled by Saanze</span>
+                    <h4>White Crop Shirt</h4>
+                    <span>Dark Editorial — Styled by Saanzé</span>
                 </div>
             </div>
             <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/halter top .jpeg" alt="Model wearing Burgundy Corset Lace-Up">
-                <div class="lookbook-caption">
-                    <h4>Floral Halter Top</h4>
-                    <span>Dark Editorial — Styled by Saanze</span>
-                </div>
-            </div>
-            <div class="lookbook-card tilt-card reveal-up">
-                <img src="assets/halter neck front.jpeg" alt="Model wearing Burgundy Corset Lace-Up">
+                <img src="assets/halter top .jpeg" alt="Floral Halter Top">
                 <div class="lookbook-caption">
                     <h4>Floral Halter Top</h4>
-                    <span>Dark Editorial — Styled by Saanze</span>
+                    <span>Dark Editorial — Styled by Saanzé</span>
+                </div>
+            </div>
+            <div class="lookbook-card tilt-card reveal-up">
+                <img src="assets/halter neck front.jpeg" alt="Floral Halter Front">
+                <div class="lookbook-caption">
+                    <h4>Floral Halter Top</h4>
+                    <span>Dark Editorial — Styled by Saanzé</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Order / CTA Section -->
+    <!-- Order Section -->
     <section class="cta-section" id="order">
         <div class="cta-content reveal-up">
             <h1 class="hero-title2">
-                <span style="height:70px;" class="title-line gradient-text" data-scroll="" style="opacity:1;transform:translateY(0px);transition:0.8s cubic-bezier(0.16,1,0.3,1);">PLACE ORDER</span>
+                <span class="title-line gradient-text" data-scroll style="opacity:1;transform:translateY(0px);">PLACE ORDER</span>
             </h1>
 
             <div class="saanze-form-wrap">
@@ -361,7 +354,6 @@
                     <div class="sf-step" id="sf-s3"><span class="sf-step-num">3</span> Fit</div>
                 </div>
 
-                <!-- Step 1: Contact -->
                 <div class="sf-panel active" id="sf-p1">
                     <div class="sf-field">
                         <label class="sf-label">Full Name</label>
@@ -387,7 +379,6 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Product Pick -->
                 <div class="sf-panel" id="sf-p2">
                     <div class="sf-field">
                         <label class="sf-label">Which piece do you want?</label>
@@ -415,7 +406,6 @@
                     </div>
                 </div>
 
-                <!-- Step 3: Measurements -->
                 <div class="sf-panel" id="sf-p3">
                     <div id="sf-selected-tag-wrap"></div>
                     <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing minimal clothing.</p>
@@ -447,7 +437,6 @@
                     </div>
                 </div>
 
-                <!-- Success State -->
                 <div class="sf-panel" id="sf-psuccess">
                     <div class="sf-success">
                         <div class="sf-check">✦</div>
@@ -464,7 +453,7 @@
 <footer>
     <div class="footer-content">
         <div class="footer-brand">
-            <div class="logo"><span class="logo-text">SAANZE</span><span class="logo-dot">.</span></div>
+            <img class="footer-logo-img" src="assets/logo.png">
             <p>where elegance meets edge. ✨</p>
             <div class="footer-socials">
                 <a href="#" class="social-icon magnetic-btn"><i class="fa-brands fa-instagram"></i></a>
@@ -483,18 +472,17 @@
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
-                <a href="#">About Saanze</a>
+                <a href="#">About Saanzé</a>
                 <a href="#">Our Story</a>
                 <a href="#">Contact</a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 Saanze. All rights reserved. Handcrafted with 💜</p>
+        <p>© 2026 Saanzé. All rights reserved. Handcrafted with 💜</p>
     </div>
 </footer>
 
-<!-- Toast Notification -->
 <div class="toast" id="toast">
     <i class="fa-solid fa-check-circle"></i>
     <span id="toastMsg">Added to bag! 🔥</span>
