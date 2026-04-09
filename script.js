@@ -72,9 +72,19 @@ body{font-family:'DM Sans',sans-serif;background:#FAF7F2;color:#1C0D08;padding:1
 .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;letter-spacing:3px;color:#3D1A0E;text-transform:uppercase;margin-bottom:.2rem;}
 .tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#C4963A;margin-bottom:1.5rem;display:block;}
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(196,150,58,.25),transparent);margin:.5rem 0;}
-.total-row{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0 .4rem;}
 .total-label{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B89880;}
 .total-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:#3D1A0E;}
+.savings{font-size:.72rem;color:#8B2635;font-weight:600;padding:.2rem 0 .8rem;display:none;}
+.promo-wrap{margin:.8rem 0 1.2rem;display:flex;gap:8px;}
+.promo-input{flex:1;padding:10px 14px;border:1.5px solid rgba(196,150,58,.25);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.82rem;background:#FAF7F2;color:#1C0D08;outline:none;transition:border-color .25s;}
+.promo-input:focus{border-color:#C4963A;}
+.promo-input::placeholder{color:#B89880;}
+.promo-btn{padding:10px 18px;background:#3D1A0E;color:#FAF7F2;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .25s;}
+.promo-btn:hover{background:#8B2635;}
+.promo-msg{font-size:.74rem;margin:-.6rem 0 .8rem;padding-left:4px;}
+.promo-msg.success{color:#2a7a2a;}
+.promo-msg.error{color:#8B2635;}
 .note{font-size:.76rem;color:#B89880;margin-bottom:1.4rem;line-height:1.6;border-left:2px solid rgba(196,150,58,.3);padding-left:10px;}
 .btn{display:flex;align-items:center;justify-content:center;width:100%;padding:1rem;background:#3D1A0E;color:#FAF7F2;border:none;border-radius:50px;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer;text-decoration:none;margin-bottom:.8rem;font-family:'DM Sans',sans-serif;}
 .btn:hover{background:#8B2635;}
@@ -89,13 +99,54 @@ body{font-family:'DM Sans',sans-serif;background:#FAF7F2;color:#1C0D08;padding:1
   <div class="divider"></div>
   <div class="total-row">
     <span class="total-label">Total</span>
-    <span class="total-price">₹${total.toLocaleString()}</span>
+    <span class="total-price" id="displayTotal">₹${total.toLocaleString()}</span>
   </div>
+  <p class="savings" id="savingsMsg">You saved ₹100 with your promo code! 🎉</p>
+
+  <div class="promo-wrap">
+    <input class="promo-input" id="promoInput" placeholder="Enter promo code…" autocomplete="off">
+    <button class="promo-btn" onclick="applyPromo()">Apply</button>
+  </div>
+  <p class="promo-msg" id="promoMsg"></p>
+
   <p class="note">Each piece is handcrafted to your measurements. Tapping "Buy Now" takes you to the order form. 💅</p>
   <a class="btn" href="javascript:void(0)" onclick="goOrder()">Buy Now — Place Order ✦</a>
   <a class="btn2" href="javascript:window.close()">← Continue Shopping</a>
 </div>
 <script>
+var baseTotal = ${total};
+var discounted = false;
+
+function applyPromo() {
+  var code = document.getElementById('promoInput').value.trim();
+  var msg = document.getElementById('promoMsg');
+  var totalEl = document.getElementById('displayTotal');
+  var savingsEl = document.getElementById('savingsMsg');
+
+  if (discounted) {
+    msg.textContent = 'Promo code already applied! 💜';
+    msg.className = 'promo-msg error';
+    return;
+  }
+
+  if (code.toLowerCase() === 'hotgirlswearsaanze2026') {
+    var newTotal = Math.max(0, baseTotal - 100);
+    totalEl.textContent = '₹' + newTotal.toLocaleString();
+    savingsEl.style.display = 'block';
+    msg.textContent = 'Code applied! ₹100 off your order 🔥';
+    msg.className = 'promo-msg success';
+    discounted = true;
+    document.getElementById('promoInput').disabled = true;
+  } else {
+    msg.textContent = 'Invalid promo code. Try again! ✦';
+    msg.className = 'promo-msg error';
+  }
+}
+
+document.getElementById('promoInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') applyPromo();
+});
+
 function goOrder(){
   if(window.opener){
     window.opener.focus();
