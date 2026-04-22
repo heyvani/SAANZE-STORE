@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- NOTE: This is the Saanzé frontend — place your existing style.css, script.js,
+     and assets/ folder inside the public/ directory alongside this file. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#FAF7F2">
     <title>Saanzé | Feel The Vibes ✦</title>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (also imported in CSS for fallback) -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap"
-        rel="stylesheet">
-    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- ── Grain texture overlay ── -->
     <div class="grain-overlay"></div>
 
-    <!-- ════════════════════════════════════════
-     TOP HEADER  (fixed)
-     ════════════════════════════════════════ -->
     <header class="top-header" id="topHeader">
         <a href="#hero" class="logo">
             <img class="logo-img" src="assets/logo.png">
-            
             <div class="logo-text-wrap">
                 <span class="logo-text">SAANZÉ</span>
                 <span class="logo-tagline">Feel The Vibes</span>
             </div>
         </a>
-
-        <!-- Desktop nav links (hidden on mobile via CSS) -->
         <ul class="desktop-nav-links">
             <li><a href="#catalogue" class="desktop-nav-link">Collection</a></li>
             <li><a href="#order" class="desktop-nav-link">Pre-order 🔥</a></li>
             <li><a href="#earn" class="desktop-nav-link earn-link">Earn 💸</a></li>
         </ul>
-
-        <!-- Icon actions -->
         <div class="header-actions">
             <button class="icon-btn" id="favBtn" aria-label="Favourites">
                 <i class="fa-solid fa-heart"></i>
@@ -55,10 +40,6 @@
         </div>
     </header>
 
-    <!-- ════════════════════════════════════════
-     PRODUCT MODAL  (bottom-sheet on mobile,
-     centered dialog on desktop)
-     ════════════════════════════════════════ -->
     <div class="product-modal-overlay" id="productModalOverlay" role="dialog" aria-modal="true">
         <div class="product-modal" id="productModal">
             <div class="modal-drag-bar"></div>
@@ -66,7 +47,6 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="modal-inner">
-                <!-- On desktop, this inner is CSS-grid 2-col via .modal-image-section + .modal-details -->
                 <div class="modal-image-section">
                     <div class="modal-image-main"><img id="modalMainImg" src="" alt="Product image"></div>
                     <div class="modal-image-row" id="modalImageRow"></div>
@@ -85,8 +65,7 @@
                     <p class="modal-desc">Handcrafted with love — each piece is made to order just for you.</p>
                     <div class="modal-actions">
                         <button class="modal-fav-btn" id="modalFavBtn"><i class="fa-solid fa-heart"></i> Save</button>
-                        <button class="modal-cart-btn" id="modalCartBtn"><i class="fa-solid fa-bag-shopping"></i> Add to
-                            Bag</button>
+                        <button class="modal-cart-btn" id="modalCartBtn"><i class="fa-solid fa-bag-shopping"></i> Add to Bag</button>
                     </div>
                     <button class="modal-order-btn" id="modalOrderBtn">Pre-order This Piece ✦</button>
                 </div>
@@ -94,20 +73,14 @@
         </div>
     </div>
 
-    <!-- ════════════════════════════════════════
-     MAIN CONTENT
-     ════════════════════════════════════════ -->
     <main>
 
-        <!-- ── HERO ── -->
         <section class="hero" id="hero">
             <div class="hero-bg" aria-hidden="true">
                 <div class="blob blob-1"></div>
                 <div class="blob blob-2"></div>
                 <div class="blob blob-3"></div>
             </div>
-
-            <!-- On desktop the hero-content and hero-visual sit side-by-side (flex row via CSS) -->
             <div class="hero-content">
                 <div class="hero-badge"><span class="pulse-dot"></span> NEW COLLECTION 2026 — PRE-ORDER</div>
                 <h1 class="hero-title">
@@ -115,11 +88,9 @@
                     <span class="outline">THE</span>
                     <span class="gradient-text">VIBES</span>
                 </h1>
-                <p class="hero-subtitle">Saanzé — where elegance meets edge. Handcrafted pieces for the bold &amp;
-                    beautiful. ✨</p>
+                <p class="hero-subtitle">Saanzé — where elegance meets edge. Handcrafted pieces for the bold &amp; beautiful. ✨</p>
                 <div class="hero-cta">
-                    <a href="#catalogue" class="btn-glow"><span>Shop the Collection</span><i
-                            class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#catalogue" class="btn-glow"><span>Shop the Collection</span><i class="fa-solid fa-arrow-right"></i></a>
                     <a href="#order" class="btn-outline"><span>Pre-order Now 🔥</span></a>
                 </div>
                 <div class="hero-stats">
@@ -138,8 +109,7 @@
                         <span class="stat-label">Avg. Rating</span>
                     </div>
                 </div>
-            </div><!-- /hero-content -->
-
+            </div>
             <div class="hero-visual">
                 <div class="hero-card-stack">
                     <div class="hero-card hero-card-1">
@@ -151,10 +121,9 @@
                         <div class="hero-card-tag">NEW ✨</div>
                     </div>
                 </div>
-            </div><!-- /hero-visual -->
-        </section><!-- /hero -->
+            </div>
+        </section>
 
-        <!-- ── MARQUEE ── -->
         <div class="marquee-section" aria-hidden="true">
             <div class="marquee-content">
                 <span>SAANZÉ — FEEL THE VIBES ✦</span>
@@ -168,29 +137,20 @@
             </div>
         </div>
 
-        <!-- ════════════════════════════════════
-       CATALOGUE  (products + lookbook)
-       ════════════════════════════════════ -->
         <section id="catalogue">
-
-            <!-- Section heading -->
             <div class="section-header reveal-up">
                 <div class="section-tag"><span class="pulse-dot"></span> THE COLLECTION</div>
                 <h2 class="section-title">Our Pieces<span class="accent">.</span></h2>
                 <p class="section-desc">handcrafted pieces that speak for themselves — drip is in the details 💅</p>
             </div>
 
-            <!-- Product grid -->
             <div class="product-grid">
-
-                <!-- ── Card 1 ── -->
                 <article class="product-card reveal-up" data-product-id="1" data-name="Floral Halter Top"
                     data-price="₹699" data-og-price="₹999" data-badge="TRENDY🔥" data-reviews="214"
                     data-img="assets/floral_halter_top.jpg" data-img2="assets/halter top .jpeg"
                     data-img3="assets/halter neck front.jpeg">
                     <div class="product-image-wrapper">
-                        <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image"
-                            loading="lazy">
+                        <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image" loading="lazy">
                         <span class="product-badge">TRENDY🔥</span>
                         <button class="card-heart-btn" data-product="Floral Halter Top" data-price="699"
                             data-img="assets/floral_halter_top.jpg" aria-label="Save Floral Halter Top to favourites">
@@ -200,8 +160,7 @@
                     <div class="product-info">
                         <h4>Floral Halter Top</h4>
                         <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span>
-                            </div>
+                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">214</span></div>
                             <div class="price"><s>₹999</s> ₹699</div>
                         </div>
                     </div>
@@ -213,14 +172,12 @@
                     </div>
                 </article>
 
-                <!-- ── Card 2 ── -->
                 <article class="product-card reveal-up" data-product-id="2" data-name="Burgundy Corset Lace-Up"
                     data-price="₹799" data-og-price="₹999" data-badge="FIRE 🔥" data-reviews="187"
                     data-img="assets/burgundy_corset_front.jpg" data-img2="assets/red corset.jpeg"
                     data-img3="assets/red corset back.jpeg">
                     <div class="product-image-wrapper">
-                        <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image"
-                            loading="lazy">
+                        <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image" loading="lazy">
                         <span class="product-badge">FIRE 🔥</span>
                         <button class="card-heart-btn" data-product="Burgundy Corset Lace-Up" data-price="799"
                             data-img="assets/burgundy_corset_front.jpg" aria-label="Save Burgundy Corset to favourites">
@@ -230,8 +187,7 @@
                     <div class="product-info">
                         <h4>Burgundy Corset Lace-Up</h4>
                         <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span>
-                            </div>
+                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">187</span></div>
                             <div class="price"><s>₹999</s> ₹799</div>
                         </div>
                     </div>
@@ -243,14 +199,12 @@
                     </div>
                 </article>
 
-                <!-- ── Card 3 ── -->
                 <article class="product-card reveal-up" data-product-id="3" data-name="White Crop Shirt"
                     data-price="₹799" data-og-price="₹999" data-badge="NEW 🔥" data-reviews="156"
                     data-img="assets/white_crop_shirt.jpg" data-img2="assets/white top front.jpeg"
                     data-img3="assets/white top back.jpeg">
                     <div class="product-image-wrapper">
-                        <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image"
-                            loading="lazy">
+                        <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image" loading="lazy">
                         <span class="product-badge">NEW 🔥</span>
                         <button class="card-heart-btn" data-product="White Crop Shirt" data-price="799"
                             data-img="assets/white_crop_shirt.jpg" aria-label="Save White Crop Shirt to favourites">
@@ -260,8 +214,7 @@
                     <div class="product-info">
                         <h4>White Crop Shirt</h4>
                         <div class="product-meta">
-                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span>
-                            </div>
+                            <div class="rating"><span class="stars">★★★★★</span><span class="review-count">156</span></div>
                             <div class="price"><s>₹999</s> ₹799</div>
                         </div>
                     </div>
@@ -272,10 +225,8 @@
                         </button>
                     </div>
                 </article>
+            </div>
 
-            </div><!-- /product-grid -->
-
-            <!-- ── LOOKBOOK (inside catalogue section) ── -->
             <div class="section-header reveal-up" style="padding-top: 3.5rem;">
                 <div class="section-tag"><span class="pulse-dot"></span> EDITORIAL</div>
                 <h2 class="section-title">Lookbook<span class="accent">.</span></h2>
@@ -285,50 +236,33 @@
                 <div class="lookbook-grid">
                     <div class="lookbook-card reveal-up">
                         <img src="assets/red corset.jpeg" alt="Burgundy Corset Editorial" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>Burgundy Corset</h4><span>Editorial — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>Burgundy Corset</h4><span>Editorial — Styled by Saanzé</span></div>
                     </div>
                     <div class="lookbook-card reveal-up">
                         <img src="assets/red corset back.jpeg" alt="Burgundy Corset Back" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>Burgundy Corset</h4><span>Golden Hour — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>Burgundy Corset</h4><span>Golden Hour — Styled by Saanzé</span></div>
                     </div>
                     <div class="lookbook-card reveal-up">
                         <img src="assets/white top front.jpeg" alt="White Crop Shirt" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>White Crop Shirt</h4><span>Studio Clean — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>White Crop Shirt</h4><span>Studio Clean — Styled by Saanzé</span></div>
                     </div>
                     <div class="lookbook-card reveal-up">
                         <img src="assets/white top back.jpeg" alt="White Crop Shirt Back" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>White Crop Shirt</h4><span>Dark Editorial — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>White Crop Shirt</h4><span>Dark Editorial — Styled by Saanzé</span></div>
                     </div>
                     <div class="lookbook-card reveal-up">
                         <img src="assets/halter top .jpeg" alt="Floral Halter Top" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>Floral Halter Top</h4><span>Dark Editorial — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>Floral Halter Top</h4><span>Dark Editorial — Styled by Saanzé</span></div>
                     </div>
                     <div class="lookbook-card reveal-up">
                         <img src="assets/halter neck front.jpeg" alt="Floral Halter Front" loading="lazy">
-                        <div class="lookbook-caption">
-                            <h4>Floral Halter Top</h4><span>Front Shot — Styled by Saanzé</span>
-                        </div>
+                        <div class="lookbook-caption"><h4>Floral Halter Top</h4><span>Front Shot — Styled by Saanzé</span></div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </section><!-- /catalogue -->
-
-        <!-- ════════════════════════════════════
-       PRE-ORDER SECTION
-       ════════════════════════════════════ -->
         <section id="order">
-
             <div class="order-heading reveal-up">
                 <div class="section-tag" style="justify-content: center;">
                     <span class="pulse-dot"></span> PLACE YOUR ORDER
@@ -337,13 +271,11 @@
                 <p class="order-sub">Handcrafted just for you — takes 2 mins 💅</p>
             </div>
 
-            <!-- Multi-step order form -->
             <div class="saanze-form-wrap reveal-up">
                 <div class="sf-tag"><span class="pulse-dot"></span> Place Your Order</div>
                 <div class="sf-title">Get The Piece<span class="accent">.</span></div>
                 <p class="sf-sub">Handcrafted just for you 💅</p>
 
-                <!-- Step indicators -->
                 <div class="sf-step-row">
                     <div class="sf-step active" id="sf-s1"><span class="sf-step-num">1</span> You</div>
                     <div class="sf-step-line"></div>
@@ -352,7 +284,6 @@
                     <div class="sf-step" id="sf-s3"><span class="sf-step-num">3</span> Fit</div>
                 </div>
 
-                <!-- Panel 1: Contact info -->
                 <div class="sf-panel active" id="sf-p1">
                     <div class="sf-field">
                         <label class="sf-label" for="sf-name">Full Name</label>
@@ -361,8 +292,7 @@
                     <div class="sf-row2">
                         <div class="sf-field">
                             <label class="sf-label" for="sf-email">Email</label>
-                            <input class="sf-input" id="sf-email" type="email" placeholder="email@you.com"
-                                autocomplete="email">
+                            <input class="sf-input" id="sf-email" type="email" placeholder="email@you.com" autocomplete="email">
                         </div>
                         <div class="sf-field">
                             <label class="sf-label" for="sf-phone">Phone</label>
@@ -371,8 +301,7 @@
                     </div>
                     <div class="sf-field">
                         <label class="sf-label" for="sf-addr">Delivery Address</label>
-                        <textarea class="sf-textarea" id="sf-addr" rows="3"
-                            placeholder="Full delivery address with pincode"></textarea>
+                        <textarea class="sf-textarea" id="sf-addr" rows="3" placeholder="Full delivery address with pincode"></textarea>
                     </div>
                     <div class="sf-btn-row">
                         <div></div>
@@ -380,7 +309,6 @@
                     </div>
                 </div>
 
-                <!-- Panel 2: Product pick -->
                 <div class="sf-panel" id="sf-p2">
                     <div class="sf-field">
                         <label class="sf-label">Which piece do you want?</label>
@@ -408,11 +336,9 @@
                     </div>
                 </div>
 
-                <!-- Panel 3: Measurements -->
                 <div class="sf-panel" id="sf-p3">
                     <div id="sf-selected-tag-wrap"></div>
-                    <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing
-                        minimal clothing.</p>
+                    <p class="sf-hint">We tailor each piece to your measurements — measure in inches while wearing minimal clothing.</p>
                     <div class="sf-measure-grid">
                         <div class="sf-field sf-measure-field">
                             <label class="sf-label" for="sf-bust">Bust / Chest</label>
@@ -426,8 +352,7 @@
                         </div>
                         <div class="sf-field sf-measure-field">
                             <label class="sf-label" for="sf-shoulder">Shoulder</label>
-                            <input class="sf-input" id="sf-shoulder" type="number" placeholder="e.g. 15" min="10"
-                                max="30">
+                            <input class="sf-input" id="sf-shoulder" type="number" placeholder="e.g. 15" min="10" max="30">
                             <span class="sf-unit">in</span>
                         </div>
                         <div class="sf-field sf-measure-field">
@@ -438,11 +363,11 @@
                     </div>
                     <div class="sf-btn-row">
                         <button class="sf-btn-back" onclick="sfGoTo(2)">← Back</button>
+                        <!-- This button triggers saanzeInitiatePayment() via the sfSubmit override in razorpay.js -->
                         <button class="sf-btn-next" onclick="sfSubmit()">Place Order ✦</button>
                     </div>
                 </div>
 
-                <!-- Panel success -->
                 <div class="sf-panel" id="sf-psuccess">
                     <div class="sf-success">
                         <div class="sf-check">✦</div>
@@ -450,17 +375,11 @@
                         <p id="sf-success-msg">We'll confirm via WhatsApp / email soon. Stay iconic 💜</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-            </div><!-- /saanze-form-wrap -->
-        </section><!-- /order -->
-
-        <!-- ════════════════════════════════════
-       EARN / AFFILIATE SECTION
-       ════════════════════════════════════ -->
         <form action="https://formspree.io/f/mnjowvly" method="POST">
             <section id="earn">
-
-                <!-- Earn marquee -->
                 <div class="earn-marquee-wrap" aria-hidden="true">
                     <div class="earn-marquee-inner">
                         <span>EARN WITH SAANZÉ ✦</span><span>SHARE &amp; GET PAID 💸</span>
@@ -470,10 +389,7 @@
                     </div>
                 </div>
 
-                <!-- Two-column layout on desktop (CSS grid via .earn-layout) -->
                 <div class="earn-layout">
-
-                    <!-- Left: copy -->
                     <div class="earn-left reveal-up">
                         <div class="section-tag"><span class="pulse-dot"></span> AFFILIATE PROGRAMME</div>
                         <h2 class="earn-title">
@@ -481,36 +397,30 @@
                             <span class="gradient-text">Vibe</span> Into<br>
                             <span class="earn-title-outline">Income.</span>
                         </h2>
-                        <p class="earn-desc">Love Saanzé? Share it. Earn real commission on every sale you drive — no
-                            catch, no minimum, just straight-up bag. 💅</p>
-
+                        <p class="earn-desc">Love Saanzé? Share it. Earn real commission on every sale you drive — no catch, no minimum, just straight-up bag. 💅</p>
                         <div class="earn-perks">
                             <div class="earn-perk">
                                 <div class="earn-perk-icon">💸</div>
                                 <div>
                                     <div class="earn-perk-title">Real Commission</div>
-                                    <div class="earn-perk-sub">Earn on every order you refer — we'll share all details
-                                        over WhatsApp</div>
+                                    <div class="earn-perk-sub">Earn on every order you refer — we'll share all details over WhatsApp</div>
                                 </div>
                             </div>
                             <div class="earn-perk">
                                 <div class="earn-perk-icon">⚡</div>
                                 <div>
                                     <div class="earn-perk-title">Fast Onboarding</div>
-                                    <div class="earn-perk-sub">Fill the form → we contact you → you're live. That's it.
-                                    </div>
+                                    <div class="earn-perk-sub">Fill the form → we contact you → you're live. That's it.</div>
                                 </div>
                             </div>
                             <div class="earn-perk">
                                 <div class="earn-perk-icon">💜</div>
                                 <div>
                                     <div class="earn-perk-title">For Everyone</div>
-                                    <div class="earn-perk-sub">Influencer, student, or just someone with a following —
-                                        all welcome.</div>
+                                    <div class="earn-perk-sub">Influencer, student, or just someone with a following — all welcome.</div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="earn-stats-row">
                             <div class="earn-stat">
                                 <span class="earn-stat-num">100+</span>
@@ -527,9 +437,8 @@
                                 <span class="earn-stat-label">Response Time</span>
                             </div>
                         </div>
-                    </div><!-- /earn-left -->
+                    </div>
 
-                    <!-- Right: affiliate form (Formspree) -->
                     <form action="https://formspree.io/f/mnjowvly" method="POST">
                         <div class="earn-form-card reveal-up">
                             <div class="earn-form-badge"><span class="pulse-dot"></span> JOIN NOW — IT'S FREE</div>
@@ -540,96 +449,68 @@
                                 <div class="earn-field-row">
                                     <div class="earn-field">
                                         <label class="earn-label" for="earn-name">Full Name</label>
-                                        <input class="earn-input" id="earn-name" placeholder="Your name"
-                                            autocomplete="name">
+                                        <input class="earn-input" id="earn-name" placeholder="Your name" autocomplete="name">
                                     </div>
                                     <div class="earn-field">
                                         <label class="earn-label" for="earn-age">Age</label>
-                                        <input class="earn-input" id="earn-age" type="number" placeholder="e.g. 21"
-                                            min="13" max="60">
+                                        <input class="earn-input" id="earn-age" type="number" placeholder="e.g. 21" min="13" max="60">
                                     </div>
                                 </div>
-
                                 <div class="earn-field">
                                     <label class="earn-label" for="earn-email">Email Address</label>
-                                    <input class="earn-input" id="earn-email" type="email" placeholder="your@email.com"
-                                        autocomplete="email">
+                                    <input class="earn-input" id="earn-email" type="email" placeholder="your@email.com" autocomplete="email">
                                 </div>
-
                                 <div class="earn-field">
                                     <label class="earn-label" for="earn-phone">WhatsApp Number</label>
                                     <div class="earn-input-prefix-wrap">
                                         <span class="earn-input-prefix">+91</span>
-                                        <input class="earn-input-prefixed" id="earn-phone" type="tel"
-                                            placeholder="XXXXX XXXXX" autocomplete="tel">
+                                        <input class="earn-input-prefixed" id="earn-phone" type="tel" placeholder="XXXXX XXXXX" autocomplete="tel">
                                     </div>
                                 </div>
-
                                 <div class="earn-field">
                                     <label class="earn-label">Gender</label>
                                     <div class="earn-gender-row">
-                                        <button type="button" class="earn-gender-btn" data-gender="Female"
-                                            onclick="selectGender(this)">🙋‍♀️ Female</button>
-                                        <button type="button" class="earn-gender-btn" data-gender="Male"
-                                            onclick="selectGender(this)">🙋‍♂️ Male</button>
-                                        <button type="button" class="earn-gender-btn" data-gender="Non-binary"
-                                            onclick="selectGender(this)">✨ Other</button>
+                                        <button type="button" class="earn-gender-btn" data-gender="Female" onclick="selectGender(this)">🙋‍♀️ Female</button>
+                                        <button type="button" class="earn-gender-btn" data-gender="Male" onclick="selectGender(this)">🙋‍♂️ Male</button>
+                                        <button type="button" class="earn-gender-btn" data-gender="Non-binary" onclick="selectGender(this)">✨ Other</button>
                                     </div>
                                 </div>
-
                                 <div class="earn-field">
                                     <label class="earn-label" for="earn-city">City / Location</label>
-                                    <input class="earn-input" id="earn-city" placeholder="e.g. Mumbai, Delhi, Pune…"
-                                        autocomplete="address-level2">
+                                    <input class="earn-input" id="earn-city" placeholder="e.g. Mumbai, Delhi, Pune…" autocomplete="address-level2">
                                 </div>
-
                                 <div class="earn-field">
-                                    <label class="earn-label">How will you promote? <span
-                                            class="earn-label-opt">(optional)</span></label>
+                                    <label class="earn-label">How will you promote? <span class="earn-label-opt">(optional)</span></label>
                                     <div class="earn-platform-row">
-                                        <button type="button" class="earn-platform-btn" data-p="Instagram"
-                                            onclick="togglePlatform(this)"><i class="fa-brands fa-instagram"></i>
-                                            Instagram</button>
-                                        <button type="button" class="earn-platform-btn" data-p="WhatsApp"
-                                            onclick="togglePlatform(this)"><i class="fa-brands fa-whatsapp"></i>
-                                            WhatsApp</button>
-                                        <button type="button" class="earn-platform-btn" data-p="YouTube"
-                                            onclick="togglePlatform(this)"><i class="fa-brands fa-youtube"></i>
-                                            YouTube</button>
-                                        <button type="button" class="earn-platform-btn" data-p="Word of Mouth"
-                                            onclick="togglePlatform(this)">🗣️ Word of Mouth</button>
+                                        <button type="button" class="earn-platform-btn" data-p="Instagram" onclick="togglePlatform(this)"><i class="fa-brands fa-instagram"></i> Instagram</button>
+                                        <button type="button" class="earn-platform-btn" data-p="WhatsApp" onclick="togglePlatform(this)"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                                        <button type="button" class="earn-platform-btn" data-p="YouTube" onclick="togglePlatform(this)"><i class="fa-brands fa-youtube"></i> YouTube</button>
+                                        <button type="button" class="earn-platform-btn" data-p="Word of Mouth" onclick="togglePlatform(this)">🗣️ Word of Mouth</button>
                                     </div>
                                 </div>
-
                                 <button type="button" class="earn-submit-btn" onclick="submitEarnForm()">
                                     <span>Join the Affiliate Squad ✦</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                                 <p class="earn-privacy">We'll only contact you on WhatsApp. No spam, ever. 💜</p>
-                            </div><!-- /earn-form-body -->
+                            </div>
 
-                            <!-- Success state -->
                             <div id="earn-success" style="display: none;">
                                 <div class="earn-success-inner">
                                     <div class="earn-success-icon">✦</div>
                                     <h3 class="earn-success-title">You're In<span class="accent">!</span></h3>
-                                    <p class="earn-success-msg" id="earn-success-msg">We've got your details! Expect a
-                                        WhatsApp message soon. Stay iconic 💜</p>
+                                    <p class="earn-success-msg" id="earn-success-msg">We've got your details! Expect a WhatsApp message soon. Stay iconic 💜</p>
                                     <div class="earn-success-badge">APPLICATION RECEIVED ✓</div>
                                 </div>
                             </div>
-
-                        </div><!-- /earn-form-card -->
-                </div><!-- /earn-layout -->
-
-            </section><!-- /earn -->
+                        </div>
+                    </form>
+                </div>
+            </section>
         </form>
 
-    </main><!-- /main -->
+    </main>
 
-    <!-- ════════════════════════════════════════
-     FOOTER
-     ════════════════════════════════════════ -->
     <footer>
         <div class="footer-logo-text">SAANZÉ<span class="accent">.</span></div>
         <p class="footer-tagline">where elegance meets edge. ✨</p>
@@ -649,12 +530,8 @@
         </div>
     </footer>
 
-    <!-- ════════════════════════════════════════
-     BOTTOM NAV  (mobile — hidden on desktop)
-     ════════════════════════════════════════ -->
     <nav class="bottom-nav" id="bottomNav" aria-label="Main navigation">
-        <button class="nav-item active" id="navCollection" onclick="navTo('catalogue','navCollection')"
-            aria-label="Collection">
+        <button class="nav-item active" id="navCollection" onclick="navTo('catalogue','navCollection')" aria-label="Collection">
             <span class="nav-icon"><i class="fa-solid fa-shirt"></i></span>
             <span class="nav-label">Collection</span>
         </button>
@@ -668,15 +545,15 @@
         </button>
     </nav>
 
-    <!-- Toast notification -->
     <div class="toast" id="toast" role="status" aria-live="polite">
         <i class="fa-solid fa-check-circle"></i>
         <span id="toastMsg">Done!</span>
     </div>
 
-    <!-- ── Script (deferred) ── -->
     <script src="script.js"></script>
-
+    <!-- ── Razorpay Standard Checkout ── -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- ── Saanzé payment handler (must load after script.js) ── -->
+    <script src="razorpay.js"></script>
 </body>
-
 </html>
