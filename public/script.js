@@ -6,6 +6,12 @@
 //  ✅ Formspree order storage
 // ═══════════════════════════════════════════════════════
 
+// ── Load Razorpay Key from server (never hardcode keys in frontend) ──
+fetch('/api/config')
+  .then(r => r.json())
+  .then(data => { window.RAZORPAY_KEY_ID = data.key_id; })
+  .catch(() => console.error('Could not load payment config'));
+
 /* ── State ── */
 let cart = JSON.parse(localStorage.getItem('saanze_cart') || '[]');
 let favs = JSON.parse(localStorage.getItem('saanze_favs') || '[]');
@@ -59,8 +65,7 @@ async function rzpVerifyPayment(paymentId, orderId, signature) {
 function rzpOpenModal({ orderData, prefill, description }) {
   return new Promise((resolve, reject) => {
     const options = {
-      // ✅ Key updated — loaded from environment via server, exposed here as test key
-      key:         'rzp_test_Sgc3VOIU7ewXjk',
+      key:         window.RAZORPAY_KEY_ID,   // ✅ loaded dynamically from server via /api/config
       order_id:    orderData.order_id,
       amount:      orderData.amount,
       currency:    orderData.currency,

@@ -26,6 +26,15 @@ const razorpay = new Razorpay({
 });
 
 // ════════════════════════════════════════════════════════
+//  GET /api/config
+//  Safely exposes only the public KEY_ID to the frontend.
+//  KEY_SECRET is never sent to the browser.
+// ════════════════════════════════════════════════════════
+app.get('/api/config', (req, res) => {
+  res.json({ key_id: process.env.RAZORPAY_KEY_ID });
+});
+
+// ════════════════════════════════════════════════════════
 //  POST /api/create-order
 //  Called by frontend before opening Razorpay modal.
 // ════════════════════════════════════════════════════════
