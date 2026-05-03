@@ -355,7 +355,7 @@ function openModal(card) {
 
   // ── 4 images: 3 product shots + size chart ──
   const productImgs = [img, img2, img3].filter(src => src && src.trim() !== '');
-  const sizeChartSrc = 'assets/size chart.jpg';
+  const sizeChartSrc = 'assets/size chart.jpeg';
   const allImgs = [
     ...productImgs.map(src => ({ src, label: null, isSizeChart: false })),
     { src: sizeChartSrc, label: '📏 Size Chart', isSizeChart: true }
