@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- NOTE: This is the Saanzé frontend — place your existing style.css, script.js,
-     and assets/ folder inside the public/ directory alongside this file. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -40,6 +38,9 @@
         </div>
     </header>
 
+    <!-- ══════════════════════════════════════════
+         PRODUCT MODAL — now with 4 image slots + size selector
+         ══════════════════════════════════════════ -->
     <div class="product-modal-overlay" id="productModalOverlay" role="dialog" aria-modal="true">
         <div class="product-modal" id="productModal">
             <div class="modal-drag-bar"></div>
@@ -49,7 +50,11 @@
             <div class="modal-inner">
                 <div class="modal-image-section">
                     <div class="modal-image-main"><img id="modalMainImg" src="" alt="Product image"></div>
+                    <!-- 4 slots: 3 product images + size chart -->
                     <div class="modal-image-row" id="modalImageRow"></div>
+                    <div class="modal-size-chart-hint">
+                        <i class="fa-solid fa-ruler"></i> Tap the size chart thumbnail above to view measurements
+                    </div>
                 </div>
                 <div class="modal-details">
                     <div class="modal-badge-row"><span class="modal-badge" id="modalBadge"></span></div>
@@ -63,6 +68,26 @@
                         <span class="modal-price-og" id="modalPriceOg"></span>
                     </div>
                     <p class="modal-desc">Handcrafted with love — each piece is made to order just for you.</p>
+
+                    <!-- ── SIZE SELECTOR ── -->
+                    <div class="modal-size-section">
+                        <div class="modal-size-header">
+                            <span class="modal-size-label">SELECT SIZE</span>
+                            <button class="modal-size-guide-btn" id="modalSizeGuideBtn">
+                                <i class="fa-solid fa-ruler"></i> Size Guide
+                            </button>
+                        </div>
+                        <div class="modal-size-btns" id="modalSizeBtns">
+                            <button class="modal-size-btn" data-size="S">S</button>
+                            <button class="modal-size-btn" data-size="M">M</button>
+                            <button class="modal-size-btn" data-size="L">L</button>
+                            <button class="modal-size-btn" data-size="XL">XL</button>
+                        </div>
+                        <p class="modal-size-error" id="modalSizeError" style="display:none;">
+                            <i class="fa-solid fa-circle-exclamation"></i> Please select a size before adding to bag
+                        </p>
+                    </div>
+
                     <div class="modal-actions">
                         <button class="modal-fav-btn" id="modalFavBtn"><i class="fa-solid fa-heart"></i> Save</button>
                         <button class="modal-cart-btn" id="modalCartBtn"><i class="fa-solid fa-bag-shopping"></i> Add to Bag</button>
@@ -145,9 +170,14 @@
             </div>
 
             <div class="product-grid">
-                <article class="product-card reveal-up" data-product-id="1" data-name="Floral Halter Top"
-                    data-price="₹699" data-og-price="₹999" data-badge="TRENDY🔥" data-reviews="214"
-                    data-img="assets/floral_halter_top.jpg" data-img2="assets/halter top .jpeg"
+
+                <!-- ── PRODUCT 1 ── -->
+                <article class="product-card reveal-up" data-product-id="1"
+                    data-name="Floral Halter Top"
+                    data-price="₹699" data-og-price="₹999"
+                    data-badge="TRENDY🔥" data-reviews="214"
+                    data-img="assets/floral_halter_top.jpg"
+                    data-img2="assets/halter top .jpeg"
                     data-img3="assets/halter neck front.jpeg">
                     <div class="product-image-wrapper">
                         <img src="assets/floral_halter_top.jpg" alt="Floral Halter Top" class="product-image" loading="lazy">
@@ -172,9 +202,13 @@
                     </div>
                 </article>
 
-                <article class="product-card reveal-up" data-product-id="2" data-name="Burgundy Corset Lace-Up"
-                    data-price="₹799" data-og-price="₹999" data-badge="FIRE 🔥" data-reviews="187"
-                    data-img="assets/burgundy_corset_front.jpg" data-img2="assets/red corset.jpeg"
+                <!-- ── PRODUCT 2 ── -->
+                <article class="product-card reveal-up" data-product-id="2"
+                    data-name="Burgundy Corset Lace-Up"
+                    data-price="₹799" data-og-price="₹999"
+                    data-badge="FIRE 🔥" data-reviews="187"
+                    data-img="assets/burgundy_corset_front.jpg"
+                    data-img2="assets/red corset.jpeg"
                     data-img3="assets/red corset back.jpeg">
                     <div class="product-image-wrapper">
                         <img src="assets/burgundy_corset_front.jpg" alt="Burgundy Corset Lace-Up" class="product-image" loading="lazy">
@@ -199,9 +233,13 @@
                     </div>
                 </article>
 
-                <article class="product-card reveal-up" data-product-id="3" data-name="White Crop Shirt"
-                    data-price="₹799" data-og-price="₹999" data-badge="NEW 🔥" data-reviews="156"
-                    data-img="assets/white_crop_shirt.jpg" data-img2="assets/white top front.jpeg"
+                <!-- ── PRODUCT 3 ── -->
+                <article class="product-card reveal-up" data-product-id="3"
+                    data-name="White Crop Shirt"
+                    data-price="₹799" data-og-price="₹999"
+                    data-badge="NEW 🔥" data-reviews="156"
+                    data-img="assets/white_crop_shirt.jpg"
+                    data-img2="assets/white top front.jpeg"
                     data-img3="assets/white top back.jpeg">
                     <div class="product-image-wrapper">
                         <img src="assets/white_crop_shirt.jpg" alt="White Crop Shirt" class="product-image" loading="lazy">
@@ -225,6 +263,7 @@
                         </button>
                     </div>
                 </article>
+
             </div>
 
             <div class="section-header reveal-up" style="padding-top: 3.5rem;">
@@ -363,7 +402,6 @@
                     </div>
                     <div class="sf-btn-row">
                         <button class="sf-btn-back" onclick="sfGoTo(2)">← Back</button>
-                        <!-- This button triggers saanzeInitiatePayment() via the sfSubmit override in razorpay.js -->
                         <button class="sf-btn-next" onclick="sfSubmit()">Place Order ✦</button>
                     </div>
                 </div>
@@ -551,9 +589,7 @@
     </div>
 
     <script src="script.js"></script>
-    <!-- ── Razorpay Standard Checkout ── -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <!-- ── Saanzé payment handler (must load after script.js) ── -->
     <script src="razorpay.js"></script>
 </body>
 </html>

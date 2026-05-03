@@ -1,12 +1,13 @@
 // ═══════════════════════════════════════════════════════
 //  SAANZÉ — SCRIPT.JS
 //  ✅ Cart sidebar with remove-item button
-//  ✅ All 3 product images showing in modal
+//  ✅ 4 images in modal (3 product + size chart)
+//  ✅ Size selector (S/M/L/XL) in modal — required before Add to Bag
 //  ✅ Razorpay Standard Checkout
 //  ✅ Formspree order storage
 // ═══════════════════════════════════════════════════════
 
-// ── Load Razorpay Key from server (never hardcode keys in frontend) ──
+// ── Load Razorpay Key from server ──
 fetch('/api/config')
   .then(r => r.json())
   .then(data => { window.RAZORPAY_KEY_ID = data.key_id; })
@@ -65,7 +66,7 @@ async function rzpVerifyPayment(paymentId, orderId, signature) {
 function rzpOpenModal({ orderData, prefill, description }) {
   return new Promise((resolve, reject) => {
     const options = {
-      key:         window.RAZORPAY_KEY_ID,   // ✅ loaded dynamically from server via /api/config
+      key:         window.RAZORPAY_KEY_ID,
       order_id:    orderData.order_id,
       amount:      orderData.amount,
       currency:    orderData.currency,
@@ -76,7 +77,6 @@ function rzpOpenModal({ orderData, prefill, description }) {
       prefill,
       handler: function (response) { resolve(response); }
     };
-
     const rzp = new window.Razorpay(options);
     rzp.on('payment.failed', function (response) {
       reject(new Error(response.error?.description || 'Payment failed'));
@@ -336,7 +336,13 @@ function updateNavOnScroll() {
 
 /* ════════════════════════════════════════
    PRODUCT MODAL
+   — 4 image slots (3 product + size chart)
+   — Size selector before Add to Bag
    ════════════════════════════════════════ */
+
+// Track selected size per modal open
+let modalSelectedSize = '';
+
 function openModal(card) {
   const name    = card.dataset.name;
   const price   = card.dataset.price;
@@ -347,27 +353,54 @@ function openModal(card) {
   const img2    = card.dataset.img2;
   const img3    = card.dataset.img3;
 
-  const allImgs = [img, img2, img3].filter(src => src && src.trim() !== '');
+  // ── 4 images: 3 product shots + size chart ──
+  const productImgs = [img, img2, img3].filter(src => src && src.trim() !== '');
+  const sizeChartSrc = 'assets/size chart.jpg';
+  const allImgs = [
+    ...productImgs.map(src => ({ src, label: null, isSizeChart: false })),
+    { src: sizeChartSrc, label: '📏 Size Chart', isSizeChart: true }
+  ];
 
+  // Reset selected size
+  modalSelectedSize = '';
+  const sizeBtns = document.querySelectorAll('.modal-size-btn');
+  sizeBtns.forEach(b => b.classList.remove('selected'));
+  const sizeError = document.getElementById('modalSizeError');
+  if (sizeError) sizeError.style.display = 'none';
+
+  // Set main image
   const mainImg = document.getElementById('modalMainImg');
-  mainImg.src = allImgs[0] || '';
+  mainImg.src   = allImgs[0].src;
+  mainImg.style.opacity = '1';
 
+  // Build thumbnail row (4 slots)
   const row = document.getElementById('modalImageRow');
   row.innerHTML = '';
+  // Make the grid always 4 columns in modal
+  row.style.gridTemplateColumns = 'repeat(4,1fr)';
 
-  allImgs.forEach((src, i) => {
+  allImgs.forEach((item, i) => {
     const slot = document.createElement('div');
-    slot.className = 'modal-img-slot' + (i === 0 ? ' active-slot' : '');
-    slot.innerHTML = `<img src="${src}" alt="View ${i + 1}" loading="lazy">`;
+    slot.className = 'modal-img-slot' + (i === 0 ? ' active-slot' : '') + (item.isSizeChart ? ' size-chart-slot' : '');
+
+    slot.innerHTML = `
+      <img src="${item.src}" alt="${item.isSizeChart ? 'Size Chart' : 'View ' + (i + 1)}" loading="lazy">
+      ${item.isSizeChart ? '<span class="size-chart-badge">📏</span>' : ''}
+    `;
+
     slot.addEventListener('click', () => {
       mainImg.style.opacity = '0';
-      setTimeout(() => { mainImg.src = src; mainImg.style.opacity = '1'; }, 180);
+      setTimeout(() => {
+        mainImg.src = item.src;
+        mainImg.style.opacity = '1';
+      }, 180);
       row.querySelectorAll('.modal-img-slot').forEach(s => s.classList.remove('active-slot'));
       slot.classList.add('active-slot');
     });
     row.appendChild(slot);
   });
 
+  // Fill text details
   document.getElementById('modalTitle').textContent   = name;
   document.getElementById('modalPrice').textContent   = price;
   document.getElementById('modalPriceOg').textContent = ogPrice;
@@ -376,11 +409,48 @@ function openModal(card) {
 
   const priceNum = price.replace(/[₹,]/g, '');
 
+  // ── "Size Guide" button → show size chart in main image ──
+  document.getElementById('modalSizeGuideBtn').onclick = () => {
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+      mainImg.src = sizeChartSrc;
+      mainImg.style.opacity = '1';
+    }, 180);
+    row.querySelectorAll('.modal-img-slot').forEach(s => s.classList.remove('active-slot'));
+    const sizeSlot = row.querySelector('.size-chart-slot');
+    if (sizeSlot) sizeSlot.classList.add('active-slot');
+  };
+
+  // ── Size buttons ──
+  sizeBtns.forEach(btn => {
+    btn.onclick = () => {
+      sizeBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      modalSelectedSize = btn.dataset.size;
+      if (sizeError) sizeError.style.display = 'none';
+    };
+  });
+
+  // ── Add to Bag — requires size ──
   document.getElementById('modalCartBtn').onclick = () => {
-    addToCart(name, priceNum, img);
+    if (!modalSelectedSize) {
+      if (sizeError) {
+        sizeError.style.display = 'flex';
+        // shake the size buttons
+        const sizeBtnsWrap = document.getElementById('modalSizeBtns');
+        sizeBtnsWrap.style.animation = 'none';
+        sizeBtnsWrap.offsetHeight;
+        sizeBtnsWrap.style.animation = 'modalSizeShake 0.45s ease';
+      }
+      showToast('Please pick a size first 👗');
+      return;
+    }
+    const cartName = name + ' — ' + modalSelectedSize;
+    addToCart(cartName, priceNum, img);
     closeModal();
   };
 
+  // ── Favourite ──
   document.getElementById('modalFavBtn').onclick = () => {
     toggleFav(name, priceNum, img);
     const isFaved = favs.some(f => f.name === name);
@@ -389,6 +459,7 @@ function openModal(card) {
       : '<i class="fa-solid fa-heart"></i> Save';
   };
 
+  // ── Pre-order button ──
   document.getElementById('modalOrderBtn').onclick = () => {
     closeModal();
     setTimeout(() => {
@@ -401,6 +472,7 @@ function openModal(card) {
     }, 300);
   };
 
+  // Set initial fav state
   const isFaved = favs.some(f => f.name === name);
   document.getElementById('modalFavBtn').innerHTML = isFaved
     ? '<i class="fa-solid fa-heart"></i> Saved ✓'
@@ -413,6 +485,11 @@ function openModal(card) {
 function closeModal() {
   document.getElementById('productModalOverlay').classList.remove('active');
   document.body.style.overflow = '';
+  // Reset size selection
+  modalSelectedSize = '';
+  document.querySelectorAll('.modal-size-btn').forEach(b => b.classList.remove('selected'));
+  const sizeError = document.getElementById('modalSizeError');
+  if (sizeError) sizeError.style.display = 'none';
 }
 
 /* ════════════════════════════════════════
@@ -492,7 +569,6 @@ function sfSubmit() {
       contact: orderData.phone
     },
     formspreeData: orderData,
-
     onSuccess: (paymentId) => {
       document.getElementById('sf-p3').classList.remove('active');
       document.getElementById('sf-s3').classList.remove('active');
@@ -502,11 +578,9 @@ function sfSubmit() {
         `Payment confirmed ✅ Your ${sfProduct} is being crafted! We'll WhatsApp you soon. Stay iconic 💜`;
       cart = []; saveCart(); updateBadges(); renderCartSidebar();
     },
-
     onCancel: () => {
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Place Order ✦'; }
     },
-
     onError: () => {
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Place Order ✦'; }
     }
@@ -611,9 +685,11 @@ document.addEventListener('DOMContentLoaded', () => {
     </aside>
   `);
 
-  /* ── Inject cart sidebar CSS ── */
-  const cartStyles = document.createElement('style');
-  cartStyles.textContent = `
+  /* ── Inject cart sidebar CSS + modal size selector CSS ── */
+  const injectedStyles = document.createElement('style');
+  injectedStyles.textContent = `
+
+    /* ── CART SIDEBAR ── */
     .cart-overlay {
       position: fixed; inset: 0; z-index: 7000;
       background: rgba(28,13,8,0.55); backdrop-filter: blur(8px);
@@ -665,8 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .cart-empty-sub { font-size: 0.82rem; color: var(--text-muted); }
     .cart-item {
       display: flex; align-items: flex-start; gap: 0.85rem;
-      padding: 1rem 0; border-bottom: 1px solid rgba(196,150,58,0.1);
-      position: relative;
+      padding: 1rem 0; border-bottom: 1px solid rgba(196,150,58,0.1); position: relative;
     }
     .cart-item:last-child { border-bottom: none; }
     .cart-item-img {
@@ -724,8 +799,92 @@ document.addEventListener('DOMContentLoaded', () => {
       color: var(--text-muted); cursor: pointer; transition: all 0.25s;
     }
     .cart-continue-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── MODAL: 4-column image row ── */
+    #modalImageRow { grid-template-columns: repeat(4,1fr) !important; }
+
+    /* Size chart thumbnail special style */
+    .size-chart-slot { position: relative; border-color: rgba(196,150,58,0.3) !important; }
+    .size-chart-slot img { object-fit: contain !important; background: #faf7f2; }
+    .size-chart-badge {
+      position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+      font-size: 0.7rem; line-height: 1;
+    }
+
+    /* Hint below image row */
+    .modal-size-chart-hint {
+      font-size: 0.68rem; color: var(--text-light);
+      display: flex; align-items: center; gap: 0.35rem;
+      margin-top: -0.4rem; margin-bottom: 0.2rem;
+      padding: 0 0.2rem;
+    }
+
+    /* ── MODAL SIZE SELECTOR ── */
+    .modal-size-section {
+      margin-bottom: 1.2rem;
+      padding: 0.9rem 1rem;
+      background: rgba(196,150,58,0.04);
+      border: 1px solid rgba(196,150,58,0.14);
+      border-radius: 12px;
+    }
+    .modal-size-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .modal-size-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .modal-size-guide-btn {
+      font-size: 0.68rem; font-weight: 600; color: var(--accent);
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 0.3rem;
+      padding: 0.25rem 0.7rem; border-radius: 50px;
+      border: 1px solid rgba(196,150,58,0.25);
+      transition: all 0.2s; font-family: var(--font-body);
+    }
+    .modal-size-guide-btn:hover {
+      background: rgba(196,150,58,0.1); border-color: var(--accent);
+    }
+    .modal-size-btns {
+      display: flex; gap: 0.55rem;
+    }
+    .modal-size-btn {
+      width: 44px; height: 44px; border-radius: 10px;
+      border: 1.5px solid rgba(61,26,14,0.15);
+      background: white; color: var(--accent-3);
+      font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+      display: flex; align-items: center; justify-content: center;
+      letter-spacing: 0.5px;
+    }
+    .modal-size-btn:hover {
+      border-color: var(--accent); color: var(--accent); transform: translateY(-2px);
+    }
+    .modal-size-btn.selected {
+      background: var(--accent-3); color: white;
+      border-color: var(--accent-3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(61,26,14,0.22);
+    }
+    .modal-size-error {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; color: var(--accent-2); font-weight: 600;
+      margin-top: 0.65rem;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Size selector shake animation */
+    @keyframes modalSizeShake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-6px); }
+      40%      { transform: translateX(6px); }
+      60%      { transform: translateX(-4px); }
+      80%      { transform: translateX(4px); }
+    }
   `;
-  document.head.appendChild(cartStyles);
+  document.head.appendChild(injectedStyles);
 
   updateBadges();
   updateHeartButtons();
@@ -834,13 +993,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Quick-add buttons ── */
+  /* ── Quick-add buttons (opens modal so user picks size) ── */
   document.querySelectorAll('.quick-add-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
-      btn.style.transform = 'scale(0.93)';
-      setTimeout(() => { btn.style.transform = 'scale(1)'; }, 150);
-      addToCart(btn.dataset.product, btn.dataset.price, btn.dataset.img);
+      // Open modal so user can pick size before adding
+      const card = btn.closest('.product-card');
+      if (card) openModal(card);
     });
   });
 
